@@ -40,7 +40,7 @@
         .container {
             background: var(--card-bg);
             width: 100%;
-            max-width: 550px; /* Un poco más ancho para albergar más campos */
+            max-width: 550px;
             border-radius: 16px;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
             overflow: hidden;
@@ -187,7 +187,7 @@
     </div>
 
     <div class="form-content">
-        <!-- REEMPLAZA EL ACTION CON TU URL DESTINO DE GOOGLE APPS SCRIPT -->
+        <!-- REEMPLAZA EL ACTION CON TU URL DESTINO DE GOOGLE APPS SCRIPT QUE TERMINA EN /exec -->
         <form id="registroForm" action="TU_URL_DE_RECEPCION_AQUI" method="POST" novalidate>
             
             <!-- Campo DNI -->
@@ -264,9 +264,8 @@
     const btnSubmit = document.getElementById('btnSubmit');
     const statusText = document.getElementById('statusText');
 
-    // Reglas de validación
     const expresiones = {
-        dni: /^\d{7,10}$/, // Números entre 7 y 10 dígitos
+        dni: /^\d{7,10}$/, 
         nombre: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
         apellido: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
         email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
