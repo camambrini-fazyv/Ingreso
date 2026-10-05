@@ -1,367 +1,428 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Inscripción de Alumnos</title>
+<meta charset="UTF-8">
 
-    <style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        :root {
-            --primary: #22c55e;
-            --primary-hover: #16a34a;
-            --success: #16a34a;
-            --error: #dc2626;
-            --background: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #cbd5e1;
-            --header-bg: #0284c7;
-            --header-text: #ffffff;
-            --input-bg: #f1f5f9;
-        }
+<title>Inscripción de Alumnos</title>
 
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
+<style>
 
+:root {
 
-        body {
-            background-color: var(--background);
-            color: var(--text-main);
+    --primary: #22c55e;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    --primary-hover: #16a34a;
 
-            min-height: 100vh;
+    --success: #16a34a;
 
-            padding: 20px;
-        }
+    --error: #dc2626;
 
+    --background: #f8fafc;
 
-        .container {
-            background: var(--card-bg);
+    --card-bg: #ffffff;
 
-            width: 100%;
-            max-width: 550px;
+    --text-main: #1e293b;
 
-            border-radius: 16px;
+    --text-muted: #64748b;
 
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    --border: #cbd5e1;
 
-            overflow: hidden;
+    --header-bg: #0284c7;
 
-            margin: 20px 0;
-        }
+    --header-text: #ffffff;
 
+    --input-bg: #f1f5f9;
 
-        .header {
-            background-color: var(--header-bg);
+}
 
-            text-align: center;
 
-            padding: 30px 20px;
+* {
 
-            border-bottom: 2px solid #0369a1;
-        }
+    box-sizing: border-box;
 
+    margin: 0;
 
-        .header h2 {
-            font-size: 24px;
+    padding: 0;
 
-            font-weight: 700;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 
-            color: var(--header-text);
+}
 
-            margin-bottom: 8px;
-        }
 
+body {
 
-        .header p {
-            font-size: 14px;
+    background-color: var(--background);
 
-            color: var(--header-text);
+    color: var(--text-main);
 
-            opacity: 0.9;
-        }
+    display: flex;
 
+    justify-content: center;
 
-        .form-content {
-            padding: 30px;
-        }
+    align-items: center;
 
+    min-height: 100vh;
 
-        .form-row {
-            display: flex;
+    padding: 20px;
 
-            gap: 15px;
-        }
+}
 
 
-        .form-row .form-group {
-            flex: 1;
-        }
+.container {
 
+    background: var(--card-bg);
 
-        .form-group {
-            margin-bottom: 20px;
+    width: 100%;
 
-            position: relative;
-        }
+    max-width: 550px;
 
+    border-radius: 16px;
 
-        label {
-            display: block;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 
-            font-size: 14px;
+    overflow: hidden;
 
-            font-weight: 600;
+    margin: 20px 0;
 
-            margin-bottom: 6px;
+}
 
-            color: #334155;
-        }
 
+.header {
 
-        input,
-        select {
+    background-color: var(--header-bg);
 
-            width: 100%;
+    text-align: center;
 
-            padding: 12px 16px;
+    padding: 30px 20px;
 
-            font-size: 15px;
+    border-bottom: 2px solid #0369a1;
 
-            border: 1px solid var(--border);
+}
 
-            border-radius: 8px;
 
-            background-color: var(--input-bg);
+.header h2 {
 
-            color: var(--text-main);
+    font-size: 24px;
 
-            transition: all 0.2s ease;
+    font-weight: 700;
 
-            outline: none;
-        }
+    color: var(--header-text);
 
+    margin-bottom: 8px;
 
-        input:focus,
-        select:focus {
+}
 
-            border-color: #0284c7;
 
-            background-color: #ffffff;
+.header p {
 
-            box-shadow:
-                0 0 0 4px rgba(2, 132, 199, 0.15);
-        }
+    font-size: 14px;
 
+    color: var(--header-text);
 
-        /* ==============================
-           CAMPO VÁLIDO
-        ============================== */
+    opacity: 0.9;
 
-        .form-group.valido input,
-        .form-group.valido select {
+}
 
-            border-color: var(--success);
 
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2316a34a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/%3E%3C/svg%3E");
+.form-content {
 
-            background-repeat: no-repeat;
+    padding: 30px;
 
-            background-position: right 12px center;
+}
 
-            background-size: 20px;
 
-            padding-right: 40px;
-        }
+.form-row {
 
+    display: flex;
 
-        /* ==============================
-           CAMPO INVÁLIDO
-        ============================== */
+    gap: 15px;
 
-        .form-group.invalido input,
-        .form-group.invalido select {
+}
 
-            border-color: var(--error);
 
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'/%3E%3C/svg%3E");
+.form-row .form-group {
 
-            background-repeat: no-repeat;
+    flex: 1;
 
-            background-position: right 12px center;
+}
 
-            background-size: 20px;
 
-            padding-right: 40px;
-        }
+.form-group {
 
+    margin-bottom: 20px;
 
-        .error-message {
+    position: relative;
 
-            font-size: 12px;
+}
 
-            color: var(--error);
 
-            margin-top: 5px;
+label {
 
-            display: none;
+    display: block;
 
-            font-weight: 500;
-        }
+    font-size: 14px;
 
+    font-weight: 600;
 
-        .form-group.invalido .error-message {
-            display: block;
-        }
+    margin-bottom: 6px;
 
+    color: #334155;
 
-        /* ==============================
-           BOTÓN
-        ============================== */
+}
 
-        button {
 
-            width: 100%;
+input {
 
-            padding: 15px;
+    width: 100%;
 
-            background-color: var(--primary);
+    padding: 12px 16px;
 
-            color: white;
+    font-size: 15px;
 
-            border: none;
+    border: 1px solid var(--border);
 
-            border-radius: 8px;
+    border-radius: 8px;
 
-            font-size: 16px;
+    background-color: var(--input-bg);
 
-            font-weight: 700;
+    color: var(--text-main);
 
-            text-transform: uppercase;
+    transition: all 0.2s ease;
 
-            letter-spacing: 0.5px;
+    outline: none;
 
-            cursor: pointer;
+}
 
-            transition: all 0.2s ease;
 
-            margin-top: 10px;
+input:focus {
 
-            box-shadow:
-                0 4px 6px -1px rgba(34, 197, 94, 0.2);
-        }
+    border-color: #0284c7;
 
+    background-color: #ffffff;
 
-        button:hover {
+    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
 
-            background-color: var(--primary-hover);
+}
 
-            transform: translateY(-1px);
-        }
 
+/* ======================================
+   CAMPO VÁLIDO
+====================================== */
 
-        button:disabled {
+.form-group.valido input {
 
-            background-color: #94a3b8;
+    border-color: var(--success);
 
-            cursor: not-allowed;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2316a34a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/%3E%3C/svg%3E");
 
-            transform: none;
-        }
+    background-repeat: no-repeat;
 
+    background-position: right 12px center;
 
-        /* ==============================
-           MENSAJE DE ESTADO
-        ============================== */
+    background-size: 20px;
 
-        #statusText {
+    padding-right: 40px;
 
-            margin-top: 16px;
+}
 
-            text-align: center;
 
-            font-size: 14px;
+/* ======================================
+   CAMPO INVÁLIDO
+====================================== */
 
-            font-weight: 600;
+.form-group.invalido input {
 
-            line-height: 1.5;
-        }
+    border-color: var(--error);
 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'/%3E%3C/svg%3E");
 
-        /* ==============================
-           MENSAJE DE ÉXITO
-        ============================== */
+    background-repeat: no-repeat;
 
-        .success-message {
+    background-position: right 12px center;
 
-            background-color: #dcfce7;
+    background-size: 20px;
 
-            color: #166534;
+    padding-right: 40px;
 
-            border: 1px solid #86efac;
+}
 
-            padding: 12px;
 
-            border-radius: 8px;
-        }
+.error-message {
 
+    font-size: 12px;
 
-        /* ==============================
-           MENSAJE DE ERROR
-        ============================== */
+    color: var(--error);
 
-        .error-general {
+    margin-top: 5px;
 
-            background-color: #fee2e2;
+    display: none;
 
-            color: #991b1b;
+    font-weight: 500;
 
-            border: 1px solid #fca5a5;
+}
 
-            padding: 12px;
 
-            border-radius: 8px;
-        }
+.form-group.invalido .error-message {
 
+    display: block;
 
-        /* ==============================
-           RESPONSIVE
-        ============================== */
+}
 
-        @media (max-width: 600px) {
 
-            .form-row {
+/* ======================================
+   BOTÓN
+====================================== */
 
-                flex-direction: column;
+button {
 
-                gap: 0;
-            }
+    width: 100%;
 
-            .form-content {
+    padding: 15px;
 
-                padding: 20px;
-            }
+    background-color: var(--primary);
 
-            .header {
+    color: white;
 
-                padding: 25px 15px;
-            }
+    border: none;
 
-        }
+    border-radius: 8px;
 
-    </style>
+    font-size: 16px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+
+    margin-top: 10px;
+
+    box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.2);
+
+}
+
+
+button:hover {
+
+    background-color: var(--primary-hover);
+
+    transform: translateY(-1px);
+
+}
+
+
+button:disabled {
+
+    background-color: #94a3b8;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* ======================================
+   MENSAJE DE ESTADO
+====================================== */
+
+#statusText {
+
+    margin-top: 16px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1.5;
+
+}
+
+
+.success-message {
+
+    background-color: #dcfce7;
+
+    color: #166534;
+
+    border: 1px solid #86efac;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+}
+
+
+.error-general {
+
+    background-color: #fee2e2;
+
+    color: #991b1b;
+
+    border: 1px solid #fca5a5;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+}
+
+
+/* ======================================
+   IFRAME OCULTO
+====================================== */
+
+#googleResponseFrame {
+
+    display: none;
+
+}
+
+
+/* ======================================
+   RESPONSIVE
+====================================== */
+
+@media (max-width: 600px) {
+
+    .form-row {
+
+        flex-direction: column;
+
+        gap: 0;
+
+    }
+
+
+    .form-content {
+
+        padding: 20px;
+
+    }
+
+
+    .header {
+
+        padding: 25px 15px;
+
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -370,6 +431,7 @@
 
 
 <div class="container">
+
 
     <div class="header">
 
@@ -386,22 +448,46 @@
 
     <div class="form-content">
 
+
+        <!-- ==========================================
+             IFRAME OCULTO
+        =========================================== -->
+
+        <iframe
+            name="googleResponseFrame"
+            id="googleResponseFrame"
+            title="Respuesta de Google"
+        ></iframe>
+
+
+        <!-- ==========================================
+             FORMULARIO
+        =========================================== -->
+
         <form
             id="registroForm"
+
             action="https://script.google.com/macros/s/AKfycbzYQkOIXuAFcZ3sbYYi7Vij7Zka4rlyJLcu3__jv_DHavcDRQDavur0m5zSYUNKkwOlEw/exec"
+
+            method="POST"
+
+            target="googleResponseFrame"
+
             novalidate
         >
 
 
-            <!-- ==============================
-                 DNI
-            ============================== -->
+            <!-- DNI -->
 
-            <div class="form-group" id="g-dni">
+            <div
+                class="form-group"
+                id="g-dni"
+            >
 
                 <label for="dni">
                     DNI / Documento *
                 </label>
+
 
                 <input
                     type="text"
@@ -414,25 +500,30 @@
                     required
                 >
 
+
                 <div class="error-message">
+
                     El DNI debe contener entre 7 y 10 dígitos numéricos.
+
                 </div>
 
             </div>
 
 
-            <!-- ==============================
-                 APELLIDO Y NOMBRE
-            ============================== -->
+            <!-- APELLIDO Y NOMBRE -->
 
             <div class="form-row">
 
 
-                <div class="form-group" id="g-apellido">
+                <div
+                    class="form-group"
+                    id="g-apellido"
+                >
 
                     <label for="apellido">
                         Apellido *
                     </label>
+
 
                     <input
                         type="text"
@@ -443,18 +534,25 @@
                         required
                     >
 
+
                     <div class="error-message">
+
                         El apellido es obligatorio y debe ser válido.
+
                     </div>
 
                 </div>
 
 
-                <div class="form-group" id="g-nombre">
+                <div
+                    class="form-group"
+                    id="g-nombre"
+                >
 
                     <label for="nombre">
                         Nombre *
                     </label>
+
 
                     <input
                         type="text"
@@ -465,8 +563,11 @@
                         required
                     >
 
+
                     <div class="error-message">
+
                         El nombre es obligatorio y debe ser válido.
+
                     </div>
 
                 </div>
@@ -475,15 +576,17 @@
             </div>
 
 
-            <!-- ==============================
-                 EMAIL
-            ============================== -->
+            <!-- EMAIL -->
 
-            <div class="form-group" id="g-email">
+            <div
+                class="form-group"
+                id="g-email"
+            >
 
                 <label for="email">
                     Correo Electrónico *
                 </label>
+
 
                 <input
                     type="email"
@@ -494,25 +597,30 @@
                     required
                 >
 
+
                 <div class="error-message">
+
                     Introduce un formato de correo electrónico válido.
+
                 </div>
 
             </div>
 
 
-            <!-- ==============================
-                 TELÉFONO Y DIRECCIÓN
-            ============================== -->
+            <!-- TELÉFONO Y DIRECCIÓN -->
 
             <div class="form-row">
 
 
-                <div class="form-group" id="g-telefono">
+                <div
+                    class="form-group"
+                    id="g-telefono"
+                >
 
                     <label for="telefono">
                         Teléfono *
                     </label>
+
 
                     <input
                         type="tel"
@@ -525,18 +633,25 @@
                         required
                     >
 
+
                     <div class="error-message">
+
                         El teléfono debe contener entre 8 y 15 números.
+
                     </div>
 
                 </div>
 
 
-                <div class="form-group" id="g-direccion">
+                <div
+                    class="form-group"
+                    id="g-direccion"
+                >
 
                     <label for="direccion">
                         Dirección / Domicilio *
                     </label>
+
 
                     <input
                         type="text"
@@ -547,8 +662,11 @@
                         required
                     >
 
+
                     <div class="error-message">
+
                         La dirección es obligatoria.
+
                     </div>
 
                 </div>
@@ -557,18 +675,20 @@
             </div>
 
 
-            <!-- ==============================
-                 PROVINCIA Y LOCALIDAD
-            ============================== -->
+            <!-- PROVINCIA Y LOCALIDAD -->
 
             <div class="form-row">
 
 
-                <div class="form-group" id="g-provincia">
+                <div
+                    class="form-group"
+                    id="g-provincia"
+                >
 
                     <label for="provincia">
                         Provincia *
                     </label>
+
 
                     <input
                         type="text"
@@ -578,18 +698,25 @@
                         required
                     >
 
+
                     <div class="error-message">
+
                         La provincia es obligatoria.
+
                     </div>
 
                 </div>
 
 
-                <div class="form-group" id="g-localidad">
+                <div
+                    class="form-group"
+                    id="g-localidad"
+                >
 
                     <label for="localidad">
                         Localidad *
                     </label>
+
 
                     <input
                         type="text"
@@ -599,8 +726,11 @@
                         required
                     >
 
+
                     <div class="error-message">
+
                         La localidad es obligatoria.
+
                     </div>
 
                 </div>
@@ -609,15 +739,17 @@
             </div>
 
 
-            <!-- ==============================
-                 ESCUELA
-            ============================== -->
+            <!-- ESCUELA -->
 
-            <div class="form-group" id="g-esc_egreso">
+            <div
+                class="form-group"
+                id="g-esc_egreso"
+            >
 
                 <label for="esc_egreso">
                     Escuela de Egreso *
                 </label>
+
 
                 <input
                     type="text"
@@ -627,33 +759,40 @@
                     required
                 >
 
+
                 <div class="error-message">
+
                     La escuela de egreso es obligatoria.
+
                 </div>
 
             </div>
 
 
-            <!-- ==============================
-                 BOTÓN
-            ============================== -->
+            <!-- BOTÓN -->
 
             <button
                 type="submit"
                 id="btnSubmit"
             >
+
                 Enviar Datos al Archivo
+
             </button>
 
+
+            <!-- ESTADO -->
 
             <div id="statusText"></div>
 
 
         </form>
 
+
     </div>
 
 </div>
+
 
 
 <script>
@@ -663,15 +802,20 @@
 // ELEMENTOS
 // ==========================================
 
-const form = document.getElementById("registroForm");
+const form =
+    document.getElementById("registroForm");
 
-const btnSubmit = document.getElementById("btnSubmit");
 
-const statusText = document.getElementById("statusText");
+const btnSubmit =
+    document.getElementById("btnSubmit");
+
+
+const statusText =
+    document.getElementById("statusText");
 
 
 // ==========================================
-// EXPRESIONES REGULARES CORREGIDAS
+// EXPRESIONES REGULARES
 // ==========================================
 
 const expresiones = {
@@ -682,7 +826,8 @@ const expresiones = {
 
     apellido: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
 
-    email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    email:
+        /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 
     telefono: /^\d{8,15}$/
 
@@ -690,7 +835,7 @@ const expresiones = {
 
 
 // ==========================================
-// ESTADO DE LOS CAMPOS
+// ESTADO DE CAMPOS
 // ==========================================
 
 const camposValidos = {
@@ -717,17 +862,24 @@ const camposValidos = {
 
 
 // ==========================================
-// VALIDAR CON EXPRESIÓN REGULAR
+// VALIDAR REGEX
 // ==========================================
 
-function validarCampoRegEx(expresion, input, campo) {
+function validarCampoRegEx(
+    expresion,
+    input,
+    campo
+) {
 
-    const grupo = document.getElementById(`g-${campo}`);
+    const grupo =
+        document.getElementById(`g-${campo}`);
 
-    const valor = input.value.trim();
 
-
-    if (expresion.test(valor)) {
+    if (
+        expresion.test(
+            input.value.trim()
+        )
+    ) {
 
         grupo.classList.remove("invalido");
 
@@ -749,17 +901,21 @@ function validarCampoRegEx(expresion, input, campo) {
 
 
 // ==========================================
-// VALIDAR CAMPO DE TEXTO
+// VALIDAR CAMPO VACÍO
 // ==========================================
 
-function validarCampoVacio(input, campo) {
+function validarCampoVacio(
+    input,
+    campo
+) {
 
-    const grupo = document.getElementById(`g-${campo}`);
+    const grupo =
+        document.getElementById(`g-${campo}`);
 
-    const valor = input.value.trim();
 
-
-    if (valor !== "") {
+    if (
+        input.value.trim() !== ""
+    ) {
 
         grupo.classList.remove("invalido");
 
@@ -781,24 +937,39 @@ function validarCampoVacio(input, campo) {
 
 
 // ==========================================
-// VALIDACIÓN AUTOMÁTICA
+// VALIDACIÓN EN TIEMPO REAL
 // ==========================================
 
-form.addEventListener("input", validarEntrada);
+form.addEventListener(
+    "input",
+    validarEntrada
+);
 
-form.addEventListener("blur", validarEntrada, true);
 
-form.addEventListener("change", validarEntrada);
+form.addEventListener(
+    "blur",
+    validarEntrada,
+    true
+);
+
+
+form.addEventListener(
+    "change",
+    validarEntrada
+);
 
 
 function validarEntrada(e) {
 
     if (!e.target.name) {
+
         return;
+
     }
 
 
     switch (e.target.name) {
+
 
         case "dni":
 
@@ -900,172 +1071,36 @@ function validarEntrada(e) {
 
 
 // ==========================================
-// SUBMIT
+// ESCUCHAR RESPUESTA DE GOOGLE
 // ==========================================
 
-form.addEventListener("submit", async function(e) {
+window.addEventListener(
+    "message",
+    function(event) {
 
-    e.preventDefault();
+        // Verificar que sea una respuesta válida
 
+        if (
+            !event.data ||
+            typeof event.data !== "object" ||
+            !event.data.status
+        ) {
 
-    // Limpiar mensaje anterior
-
-    statusText.innerText = "";
-
-    statusText.className = "";
-
-
-    // ======================================
-    // VALIDAR TODOS LOS CAMPOS
-    // ======================================
-
-    validarCampoRegEx(
-        expresiones.dni,
-        document.getElementById("dni"),
-        "dni"
-    );
-
-
-    validarCampoRegEx(
-        expresiones.apellido,
-        document.getElementById("apellido"),
-        "apellido"
-    );
-
-
-    validarCampoRegEx(
-        expresiones.nombre,
-        document.getElementById("nombre"),
-        "nombre"
-    );
-
-
-    validarCampoRegEx(
-        expresiones.email,
-        document.getElementById("email"),
-        "email"
-    );
-
-
-    validarCampoRegEx(
-        expresiones.telefono,
-        document.getElementById("telefono"),
-        "telefono"
-    );
-
-
-    validarCampoVacio(
-        document.getElementById("direccion"),
-        "direccion"
-    );
-
-
-    validarCampoVacio(
-        document.getElementById("provincia"),
-        "provincia"
-    );
-
-
-    validarCampoVacio(
-        document.getElementById("localidad"),
-        "localidad"
-    );
-
-
-    validarCampoVacio(
-        document.getElementById("esc_egreso"),
-        "esc_egreso"
-    );
-
-
-    // ======================================
-    // COMPROBAR RESULTADO
-    // ======================================
-
-    const todoValido = Object.values(camposValidos)
-        .every(valor => valor === true);
-
-
-    if (!todoValido) {
-
-        statusText.className = "error-general";
-
-        statusText.innerText =
-            "Revisa los campos marcados en rojo.";
-
-        return;
-    }
-
-
-    // ======================================
-    // BLOQUEAR BOTÓN
-    // ======================================
-
-    btnSubmit.disabled = true;
-
-    btnSubmit.innerText = "Guardando datos...";
-
-
-    try {
-
-        // ==================================
-        // PREPARAR DATOS
-        // ==================================
-
-        const formData = new FormData(form);
-
-
-        const datos = new URLSearchParams();
-
-
-        for (const [key, value] of formData.entries()) {
-
-            datos.append(
-                key,
-                value.toString().trim()
-            );
+            return;
 
         }
 
 
-        // ==================================
-        // ENVIAR A GOOGLE APPS SCRIPT
-        // ==================================
-
-        const respuesta = await fetch(
-
-            form.action,
-
-            {
-
-                method: "POST",
-
-                headers: {
-
-                    "Content-Type":
-                        "application/x-www-form-urlencoded;charset=UTF-8"
-
-                },
-
-                body: datos.toString()
-
-            }
-
-        );
+        const resultado = event.data;
 
 
-        // ==================================
-        // LEER RESPUESTA
-        // ==================================
+        // ======================================
+        // REGISTRO EXITOSO
+        // ======================================
 
-        const resultado = await respuesta.json();
-
-
-        // ==================================
-        // REGISTRO CORRECTO
-        // ==================================
-
-        if (resultado.status === "success") {
+        if (
+            resultado.status === "success"
+        ) {
 
             statusText.className =
                 "success-message";
@@ -1078,10 +1113,12 @@ form.addEventListener("submit", async function(e) {
                 "</strong>";
 
 
+            // Limpiar formulario
+
             form.reset();
 
 
-            // Quitar estados visuales
+            // Quitar colores
 
             document
                 .querySelectorAll(".form-group")
@@ -1100,19 +1137,30 @@ form.addEventListener("submit", async function(e) {
             Object.keys(camposValidos)
                 .forEach(function(campo) {
 
-                    camposValidos[campo] = false;
+                    camposValidos[campo] =
+                        false;
 
                 });
 
 
+            btnSubmit.disabled = false;
+
+            btnSubmit.innerText =
+                "Enviar Datos al Archivo";
+
+
+            return;
+
         }
 
 
-        // ==================================
-        // ERROR DEVUELTO POR GOOGLE
-        // ==================================
+        // ======================================
+        // ERROR
+        // ======================================
 
-        else {
+        if (
+            resultado.status === "error"
+        ) {
 
             statusText.className =
                 "error-general";
@@ -1135,47 +1183,162 @@ form.addEventListener("submit", async function(e) {
 
                 if (grupo) {
 
-                    grupo.classList.remove("valido");
+                    grupo.classList.remove(
+                        "valido"
+                    );
 
-                    grupo.classList.add("invalido");
+
+                    grupo.classList.add(
+                        "invalido"
+                    );
 
                 }
 
             }
 
+
+            btnSubmit.disabled = false;
+
+            btnSubmit.innerText =
+                "Enviar Datos al Archivo";
+
         }
-
-
-    } catch (error) {
-
-        console.error(
-            "Error al enviar:",
-            error
-        );
-
-
-        statusText.className =
-            "error-general";
-
-
-        statusText.innerText =
-            "No fue posible comunicarse con el servidor. " +
-            "Verifica tu conexión e inténtalo nuevamente.";
 
     }
 
+);
 
-    // ======================================
-    // DESBLOQUEAR BOTÓN
-    // ======================================
 
-    btnSubmit.disabled = false;
+// ==========================================
+// ENVÍO DEL FORMULARIO
+// ==========================================
 
-    btnSubmit.innerText =
-        "Enviar Datos al Archivo";
+form.addEventListener(
+    "submit",
+    function(e) {
 
-});
+        e.preventDefault();
 
+
+        statusText.innerText = "";
+
+        statusText.className = "";
+
+
+        // ======================================
+        // VALIDAR TODOS LOS CAMPOS
+        // ======================================
+
+        validarCampoRegEx(
+            expresiones.dni,
+            document.getElementById("dni"),
+            "dni"
+        );
+
+
+        validarCampoRegEx(
+            expresiones.apellido,
+            document.getElementById("apellido"),
+            "apellido"
+        );
+
+
+        validarCampoRegEx(
+            expresiones.nombre,
+            document.getElementById("nombre"),
+            "nombre"
+        );
+
+
+        validarCampoRegEx(
+            expresiones.email,
+            document.getElementById("email"),
+            "email"
+        );
+
+
+        validarCampoRegEx(
+            expresiones.telefono,
+            document.getElementById("telefono"),
+            "telefono"
+        );
+
+
+        validarCampoVacio(
+            document.getElementById("direccion"),
+            "direccion"
+        );
+
+
+        validarCampoVacio(
+            document.getElementById("provincia"),
+            "provincia"
+        );
+
+
+        validarCampoVacio(
+            document.getElementById("localidad"),
+            "localidad"
+        );
+
+
+        validarCampoVacio(
+            document.getElementById("esc_egreso"),
+            "esc_egreso"
+        );
+
+
+        // ======================================
+        // COMPROBAR VALIDACIÓN
+        // ======================================
+
+        const todoValido =
+            Object.values(camposValidos)
+                .every(
+                    valor => valor === true
+                );
+
+
+        if (!todoValido) {
+
+            statusText.className =
+                "error-general";
+
+
+            statusText.innerText =
+                "Revisa los campos marcados en rojo.";
+
+
+            return;
+
+        }
+
+
+        // ======================================
+        // BLOQUEAR BOTÓN
+        // ======================================
+
+        btnSubmit.disabled = true;
+
+        btnSubmit.innerText =
+            "Guardando datos...";
+
+
+        statusText.innerText =
+            "Enviando información...";
+
+
+        // ======================================
+        // ENVIAR FORMULARIO
+        // AL IFRAME OCULTO
+        // ======================================
+
+        form.submit();
+
+
+    }
+
+);
 
 </script>
 
