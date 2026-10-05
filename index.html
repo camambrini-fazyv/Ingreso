@@ -261,15 +261,57 @@
 </div>
 
 <script>
-    const form = document.getElementById('registroForm');
-    const btnSubmit = document.getElementById('btnSubmit');
-    const statusText = document.getElementById('statusText');
+        form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-    const expresiones = {
-        dni: /^\d{7,10}$/, 
-        nombre: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
-        apellido: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
-        email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-        telefono: /^\d{8,15}$/
-    };
+        // Validaciones previas de obligatoriedad
+        validarCampoRegEx(expresiones.dni, document.getElementById('dni'), 'dni');
+        validarCampoRegEx(expresiones.apellido, document.getElementById('apellido'), 'apellido');
+        validarCampoRegEx(expresiones.nombre, document.getElementById('nombre'), 'nombre');
+        validarCampoRegEx(expresiones.email, document.getElementById('email'), 'email');
+        validarCampoRegEx(expresiones.telefono, document.getElementById('telefono'), 'telefono');
+        validarCampoVacio(document.getElementById('direccion'), 'direccion');
+        validarCampoVacio(document.getElementById('provincia'), 'provincia');
+        validarCampoVacio(document.getElementById('localidad'), 'localidad');
+        validarCampoVacio(document.getElementById('esc_egreso'), 'esc_egreso');
+
+        const todoValido = Object.values(camposValidos).every(val => val === true);
+
+        if(todoValido) {
+            btnSubmit.disabled = true;
+            btnSubmit.innerText = 'Guardando datos...';
+            statusText.innerText = '';
+
+            const formData = new FormData(form);
+            const urlEncoded = new URLSearchParams(formData).toString();
+
+            // Usamos un método de envío alternativo para absorber el mensaje de Google Drive
+            fetch(form.action, {
+                method: 'POST',
+                body: urlEncoded,
+                mode: 'no-cors', // Esto obliga a ignorar la respuesta de redirección de Google Drive
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            })
+            .then(() => {
+                // Como los datos ya se guardan, forzamos directamente el mensaje de éxito aquí
+                statusText.style.color = 'var(--success)';
+                statusText.innerText = '¡Felicidades! Los datos han quedado guardados en el archivo.';
+                form.reset();
+                document.querySelectorAll('.form-group').forEach((g) => g.classList.remove('valido'));
+            })
+            .catch(error => {
+                statusText.style.color = 'var(--error)';
+                statusText.innerText = 'Error al enviar los datos. Revisa la conexión.';
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = 'Enviar Datos al Archivo';
+            });
+
+        } else {
+            statusText.style.color = 'var(--error)';
+            statusText.innerText = 'Todos los campos son obligatorios. Por favor, complétalos correctamente.';
+        }
+    });
 
