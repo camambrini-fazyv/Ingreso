@@ -265,10 +265,110 @@
     const statusText = document.getElementById('statusText');
 
     const expresiones = {
-        dni: /^\d{7,10}$/, 
-        nombre: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
-        apellido: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
-        email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-        telefono: /^\d{8,15}$/
+        dni: /^\d{7,10}\$/, 
+        nombre: /^[a-zA-ZÀ-ÿ\s]{2,40}\$/,
+        apellido: /^[a-zA-ZÀ-ÿ\s]{2,40}\$/,
+        email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\$/,
+        telefono: /^\d{8,15}\$/
     };
 
+    // Estado de validación (se corrigió el nombre interno a 'nombre')
+    const camposValidos = { dni: false, apellido: false, nombre: false, email: false, telefono: false, direccion: false, provincia: false, localidad: false, esc_egreso: false };
+
+    const validarCampoRegEx = (expresion, input, campo) => {
+        const grupo = document.getElementById(`g-${campo}`);
+        if(expresion.test(input.value.trim())) {
+            grupo.classList.remove('invalido');
+            grupo.classList.add('valido');
+            camposValidos[campo] = true;
+        } else {
+            grupo.classList.remove('valido');
+            grupo.classList.add('invalido');
+            camposValidos[campo] = false;
+        }
+    };
+
+    const validarCampoVacio = (input, campo) => {
+        const grupo = document.getElementById(`g-${campo}`);
+        if(input.value.trim() !== "") {
+            grupo.classList.remove('invalido');
+            grupo.classList.add('valido');
+            camposValidos[campo] = true;
+        } else {
+            grupo.classList.remove('valido');
+            grupo.classList.add('invalido');
+            camposValidos[campo] = false;
+        }
+    };
+
+    form.addEventListener('keyup', validarEntrada);
+    form.addEventListener('blur', validarEntrada, true);
+    form.addEventListener('change', validarEntrada);
+
+    function validarEntrada(e) {
+        switch (e.target.name) {
+            case "dni": validarCampoRegEx(expresiones.dni, e.target, 'dni'); break;
+            case "apellido": validarCampoRegEx(expresiones.apellido, e.target, 'apellido'); break;
+            case "nombre": validarCampoRegEx(expresiones.nombre, e.target, 'nombre'); break;
+            case "email": validarCampoRegEx(expresiones.email, e.target, 'email'); break;
+            case "telefono": validarCampoRegEx(expresiones.telefono, e.target, 'telefono'); break;
+            case "direccion": validarCampoVacio(e.target, 'direccion'); break;
+            case "provincia": validarCampoVacio(e.target, 'provincia'); break;
+            case "localidad": validarCampoVacio(e.target, 'localidad'); break;
+            case "esc_egreso": validarCampoVacio(e.target, 'esc_egreso'); break;
+        }
+    }
+
+    form.addEventListener('submit', function(e) {
+        // Bloqueo total de la redirección clásica pase lo que pase
+        e.preventDefault(); 
+
+        // Forzar validaciones de campo antes de enviar
+        validarCampoRegEx(expresiones.dni, document.getElementById('dni'), 'dni');
+        validarCampoRegEx(expresiones.apellido, document.getElementById('apellido'), 'apellido');
+        validarCampoRegEx(expresiones.nombre, document.getElementById('nombre'), 'nombre');
+        validarCampoRegEx(expresiones.email, document.getElementById('email'), 'email');
+        validarCampoRegEx(expresiones.telefono, document.getElementById('telefono'), 'telefono');
+        validarCampoVacio(document.getElementById('direccion'), 'direccion');
+        validarCampoVacio(document.getElementById('provincia'), 'provincia');
+        validarCampoVacio(document.getElementById('localidad'), 'localidad');
+        validarCampoVacio(document.getElementById('esc_egreso'), 'esc_egreso');
+
+        // Verificar si absolutamente todos los campos están correctos
+        const todoValido = Object.values(camposValidos).every(val => val === true);
+
+        if(todoValido) {
+            btnSubmit.disabled = true;
+            btnSubmit.innerText = 'Guardando datos...';
+            statusText.innerText = '';
+
+            const formData = new FormData(form);
+            const urlEncoded = new URLSearchParams(formData).toString();
+
+            fetch(form.action, {
+                method: 'POST',
+                body: urlEncoded,
+                mode: 'no-cors', // Absorbe y silencia la redirección visual a Google Drive
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            })
+            .then(() => {
+                statusText.style.color = 'var(--success)';
+                statusText.innerText = '¡Felicidades! Los datos han quedado guardados en el archivo.';
+                form.reset();
+                document.querySelectorAll('.form-group').forEach((g) => g.classList.remove('valido'));
+            })
+            .catch(error => {
+                statusText.style.color = 'var(--error)';
+                statusText.innerText = 'Error al enviar los datos. Revisa la conexión.';
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = 'Enviar Datos al Archivo';
+            });
+        } else {
+            statusText.style.color = 'var(--error)';
+            statusText.innerText = 'Todos los campos son obligatorios y deben estar completados correctamente.';
+        }
+    });
+</script>
