@@ -320,15 +320,15 @@
     }
 
     form.addEventListener('submit', function(e) {
-        // Bloqueo total garantizado de la redirección tradicional
+        // Bloqueo absoluto de cualquier redirección clásica
         e.preventDefault(); 
 
-        // Forzar todas las validaciones manuales antes de procesar el envío
+        // Forzar todas las validaciones manuales con la ortografía correcta
         validarCampoRegEx(expresiones.dni, document.getElementById('dni'), 'dni');
         validarCampoRegEx(expresiones.apellido, document.getElementById('apellido'), 'apellido');
         validarCampoRegEx(expresiones.nombre, document.getElementById('nombre'), 'nombre');
         validarCampoRegEx(expresiones.email, document.getElementById('email'), 'email');
-        validarCampoRegEx(expresiones.telefono, document.getElementById('telefono'), 'telefono'); // <-- CORREGIDO CON 'C'
+        validarCampoRegEx(expresiones.telefono, document.getElementById('telefono'), 'telefono'); // <-- ¡CORREGIDO CON C!
         validarCampoVacio(document.getElementById('direccion'), 'direccion');
         validarCampoVacio(document.getElementById('provincia'), 'provincia');
         validarCampoVacio(document.getElementById('localidad'), 'localidad');
@@ -347,7 +347,7 @@
             fetch(form.action, {
                 method: 'POST',
                 body: urlEncoded,
-                mode: 'no-cors', // Detiene de forma absoluta el salto a la pantalla de Drive
+                mode: 'no-cors', // Detiene por completo el salto a Google Drive
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             })
             .then(() => {
