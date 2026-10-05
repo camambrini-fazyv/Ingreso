@@ -45,19 +45,19 @@
             <div class="form-group" id="g-dni">
                 <label for="dni">DNI / Documento *</label>
                 <input type="text" id="dni" name="dni" placeholder="Solo números, sin puntos" required>
-                <div class="error-message">El DNI debe tener entre 7 y 10 números.</div>
+                <div class="error-message">El DNI es obligatorio.</div>
             </div>
 
             <div class="form-row">
                 <div class="form-group" id="g-apellido">
                     <label for="apellido">Apellido *</label>
                     <input type="text" id="apellido" name="apellido" required>
-                    <div class="error-message">El apellido es obligatorio (mínimo 2 letras).</div>
+                    <div class="error-message">El apellido es obligatorio.</div>
                 </div>
                 <div class="form-group" id="g-nombre">
                     <label for="nombre">Nombre *</label>
                     <input type="text" id="nombre" name="nombre" required>
-                    <div class="error-message">El nombre es obligatorio (mínimo 2 letras).</div>
+                    <div class="error-message">El nombre es obligatorio.</div>
                 </div>
             </div>
 
@@ -70,8 +70,8 @@
             <div class="form-row">
                 <div class="form-group" id="g-telefono">
                     <label for="telefono">Teléfono *</label>
-                    <input type="tel" id="telefono" name="telefono" placeholder="Mínimo 8 dígitos" required>
-                    <div class="error-message">Mínimo 8 números, sin letras ni espacios.</div>
+                    <input type="tel" id="telefono" name="telefono" required>
+                    <div class="error-message">El teléfono es obligatorio.</div>
                 </div>
                 <div class="form-group" id="g-direccion">
                     <label for="direccion">Dirección *</label>
@@ -110,14 +110,6 @@
     const btnSubmit = document.getElementById('btnSubmit');
     const statusText = document.getElementById('statusText');
 
-    // EXPRESIONES TOTALMENTE LIMPIAS Y LIBRES DE ERRORES DE ESCAPE
-    const expresiones = {
-        dni: /^\d{7,10}\$/,
-        texto: /^[a-zA-ZÀ-ÿ\s]{2,40}\$/,
-        email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+\$/,
-        telefono: /^\d{8,15}\$/
-    };
-
     function validar(id, esValido) {
         const grupo = document.getElementById(`g-${id}`);
         if (esValido) {
@@ -131,11 +123,12 @@
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const vDni = validar('dni', expresiones.dni.test(document.getElementById('dni').value.trim()));
-        const vApe = validar('apellido', expresiones.texto.test(document.getElementById('apellido').value.trim()));
-        const vNom = validar('nombre', expresiones.texto.test(document.getElementById('nombre').value.trim()));
-        const vEma = validar('email', expresiones.email.test(document.getElementById('email').value.trim()));
-        const vTel = validar('telefono', expresiones.telefono.test(document.getElementById('telefono').value.trim()));
+        // Validaciones directas de contenido no vacío
+        const vDni = validar('dni', document.getElementById('dni').value.trim() !== '');
+        const vApe = validar('apellido', document.getElementById('apellido').value.trim() !== '');
+        const vNom = validar('nombre', document.getElementById('nombre').value.trim() !== '');
+        const vEma = validar('email', document.getElementById('email').value.trim().includes('@'));
+        const vTel = validar('telefono', document.getElementById('telefono').value.trim() !== '');
         const vDir = validar('direccion', document.getElementById('direccion').value.trim() !== '');
         const vPro = validar('provincia', document.getElementById('provincia').value.trim() !== '');
         const vLoc = validar('localidad', document.getElementById('localidad').value.trim() !== '');
@@ -171,7 +164,7 @@
             });
         } else {
             statusText.style.color = 'var(--error)';
-            statusText.innerText = 'Por favor, completa correctamente los campos marcados en rojo.';
+            statusText.innerText = 'Por favor, completa todos los campos del formulario.';
         }
     });
 </script>
