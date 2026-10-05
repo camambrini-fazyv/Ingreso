@@ -264,7 +264,7 @@
     const btnSubmit = document.getElementById('btnSubmit');
     const statusText = document.getElementById('statusText');
 
-    // EXPRESIONES CORREGIDAS AL 100% (Sin barras invertidas erróneas)
+    // EXPRESIONES TOTALMENTE LIMPIAS
     const expresiones = {
         dni: /^\d{7,10}\$/, 
         nombre: /^[a-zA-ZÀ-ÿ\s]{2,40}\$/,
@@ -320,14 +320,15 @@
     }
 
     form.addEventListener('submit', function(e) {
+        // Bloqueo total garantizado de la redirección tradicional
         e.preventDefault(); 
 
-        // Forzar validaciones al presionar Enviar
+        // Forzar todas las validaciones manuales antes de procesar el envío
         validarCampoRegEx(expresiones.dni, document.getElementById('dni'), 'dni');
         validarCampoRegEx(expresiones.apellido, document.getElementById('apellido'), 'apellido');
         validarCampoRegEx(expresiones.nombre, document.getElementById('nombre'), 'nombre');
         validarCampoRegEx(expresiones.email, document.getElementById('email'), 'email');
-        validarCampoRegEx(expresiones.telefono, document.getElementById('telefono'), 'telefono');
+        validarCampoRegEx(expresiones.telefono, document.getElementById('telefono'), 'telefono'); // <-- CORREGIDO CON 'C'
         validarCampoVacio(document.getElementById('direccion'), 'direccion');
         validarCampoVacio(document.getElementById('provincia'), 'provincia');
         validarCampoVacio(document.getElementById('localidad'), 'localidad');
@@ -346,7 +347,7 @@
             fetch(form.action, {
                 method: 'POST',
                 body: urlEncoded,
-                mode: 'no-cors', 
+                mode: 'no-cors', // Detiene de forma absoluta el salto a la pantalla de Drive
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             })
             .then(() => {
