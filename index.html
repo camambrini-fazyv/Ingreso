@@ -1765,33 +1765,122 @@ function validarEntrada(e) {
 // VERIFICAR DNI Y EMAIL EN GOOGLE
 // ============================================================
 
-function verificarDuplicados(
-    dni,
-    email
-) {
+function verificarDuplicados(dni, email) {
+    const MAX_INTENTOS = 3;
+    const TIEMPO_ESPERA = 7000;
 
-    return new Promise(
-        function(resolve, reject) {
-
+    function realizarIntento() {
+        return new Promise(function(resolve, reject) {
 
             const callbackName =
                 "respuestaVerificacion_" +
-                Date.now() +
-                "_" +
-                Math.floor(
-                    Math.random() * 100000
-                );
+                Date.now() + "_" +
+                Math.floor(Math.random() * 100000);
 
+            const script = document.createElement("script");
+            let finalizado = false;
+            let timeoutId = null;
 
-            const script =
-                document.createElement(
-                    "script"
-                );
+            function limpiar() {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
 
+                try {
+                    delete window[callbackName];
+                } catch (e) {
+                    window[callbackName] = undefined;
+                }
 
-            let finalizado =
-                false;
+                if (script.parentNode) {
+                    script.parentNode.removeChild(script);
+                }
+            }
 
+            window[callbackName] = function(resultado) {
+
+                if (finalizado) {
+                    return;
+                }
+
+                finalizado = true;
+                limpiar();
+
+                resolve(resultado);
+            };
+
+            script.onerror = function() {
+
+                if (finalizado) {
+                    return;
+                }
+
+                finalizado = true;
+                limpiar();
+
+                reject(new Error("No fue posible verificar los datos."));
+            };
+
+            const url =
+                GOOGLE_SCRIPT_URL +
+                "?accion=verificar" +
+                "&dni=" + encodeURIComponent(dni) +
+                "&email=" + encodeURIComponent(email) +
+                "&callback=" + encodeURIComponent(callbackName) +
+                "&_=" + Date.now();
+
+            script.src = url;
+
+            document.body.appendChild(script);
+
+            timeoutId = setTimeout(function() {
+
+                if (finalizado) {
+                    return;
+                }
+
+                finalizado = true;
+                limpiar();
+
+                reject(new Error("La verificación tardó demasiado."));
+            }, TIEMPO_ESPERA);
+        });
+    }
+
+    return (async function() {
+
+        let ultimoError = null;
+
+        for (let numeroIntento = 1; numeroIntento <= MAX_INTENTOS; numeroIntento++) {
+
+            try {
+
+                const resultado = await realizarIntento();
+
+                if (resultado && resultado.status === "success") {
+                    return resultado;
+                }
+
+                throw new Error("Respuesta inválida del servidor.");
+
+            } catch (error) {
+
+                ultimoError = error;
+
+                if (numeroIntento < MAX_INTENTOS) {
+
+                    await new Promise(function(resolve) {
+                        setTimeout(resolve, 500);
+                    });
+
+                }
+            }
+        }
+
+        throw ultimoError || new Error("No fue posible verificar los datos.");
+
+    })();
+}
 
             // ------------------------------------------------
             // FUNCIÓN JSONP
