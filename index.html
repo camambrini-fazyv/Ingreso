@@ -17,27 +17,16 @@
 :root {
 
     --primary: #22c55e;
-
     --primary-hover: #16a34a;
-
     --success: #16a34a;
-
     --error: #dc2626;
-
     --background: #f8fafc;
-
     --card-bg: #ffffff;
-
     --text-main: #1e293b;
-
     --text-muted: #64748b;
-
     --border: #cbd5e1;
-
     --header-bg: #0284c7;
-
     --header-text: #ffffff;
-
     --input-bg: #f1f5f9;
 
 }
@@ -46,9 +35,7 @@
 * {
 
     box-sizing: border-box;
-
     margin: 0;
-
     padding: 0;
 
     font-family:
@@ -738,7 +725,6 @@ button:disabled {
     id="formularioContainer"
 >
 
-
     <div class="header">
 
         <h2>
@@ -754,12 +740,10 @@ button:disabled {
 
     <div class="form-content">
 
-
         <form
             id="registroForm"
             novalidate
         >
-
 
             <!-- DNI -->
 
@@ -792,7 +776,6 @@ button:disabled {
             <!-- APELLIDO / NOMBRE -->
 
             <div class="form-row">
-
 
                 <div
                     class="form-group"
@@ -841,7 +824,6 @@ button:disabled {
 
                 </div>
 
-
             </div>
 
 
@@ -874,7 +856,6 @@ button:disabled {
             <!-- TELEFONO / DIRECCION -->
 
             <div class="form-row">
-
 
                 <div
                     class="form-group"
@@ -925,14 +906,12 @@ button:disabled {
 
                 </div>
 
-
             </div>
 
 
             <!-- PROVINCIA / LOCALIDAD -->
 
             <div class="form-row">
-
 
                 <div
                     class="form-group"
@@ -980,7 +959,6 @@ button:disabled {
                     </div>
 
                 </div>
-
 
             </div>
 
@@ -1084,7 +1062,6 @@ button:disabled {
 
             <div id="statusText"></div>
 
-
         </form>
 
     </div>
@@ -1100,35 +1077,28 @@ button:disabled {
     id="pantallaConfirmacion"
 >
 
-
     <div class="confirmacion-header">
-
 
         <div class="confirmacion-icono">
             ✓
         </div>
 
-
         <h2>
             ¡Inscripción realizada!
         </h2>
 
-
         <p>
             La información fue recibida correctamente.
         </p>
-
 
     </div>
 
 
     <div class="confirmacion-content">
 
-
         <h3>
             Datos guardados correctamente
         </h3>
-
 
         <p>
             Tu inscripción fue registrada
@@ -1164,7 +1134,6 @@ button:disabled {
             Finalizar
         </button>
 
-
     </div>
 
 </div>
@@ -1194,75 +1163,40 @@ const MAX_FILE_SIZE =
 // ============================================================
 
 const form =
-    document.getElementById(
-        "registroForm"
-    );
-
+    document.getElementById("registroForm");
 
 const btnSubmit =
-    document.getElementById(
-        "btnSubmit"
-    );
-
+    document.getElementById("btnSubmit");
 
 const statusText =
-    document.getElementById(
-        "statusText"
-    );
-
+    document.getElementById("statusText");
 
 const comprobante =
-    document.getElementById(
-        "comprobante"
-    );
-
+    document.getElementById("comprobante");
 
 const comprobanteBox =
-    document.getElementById(
-        "comprobanteBox"
-    );
-
+    document.getElementById("comprobanteBox");
 
 const previewContainer =
-    document.getElementById(
-        "previewContainer"
-    );
-
+    document.getElementById("previewContainer");
 
 const previewImagen =
-    document.getElementById(
-        "previewImagen"
-    );
-
+    document.getElementById("previewImagen");
 
 const nombreArchivo =
-    document.getElementById(
-        "nombreArchivo"
-    );
-
+    document.getElementById("nombreArchivo");
 
 const formularioContainer =
-    document.getElementById(
-        "formularioContainer"
-    );
-
+    document.getElementById("formularioContainer");
 
 const pantallaConfirmacion =
-    document.getElementById(
-        "pantallaConfirmacion"
-    );
-
+    document.getElementById("pantallaConfirmacion");
 
 const numeroInscripcion =
-    document.getElementById(
-        "numeroInscripcion"
-    );
-
+    document.getElementById("numeroInscripcion");
 
 const btnFinalizar =
-    document.getElementById(
-        "btnFinalizar"
-    );
+    document.getElementById("btnFinalizar");
 
 
 // ============================================================
@@ -1296,23 +1230,14 @@ const expresiones = {
 const camposValidos = {
 
     dni: false,
-
     apellido: false,
-
     nombre: false,
-
     email: false,
-
     telefono: false,
-
     direccion: false,
-
     provincia: false,
-
     localidad: false,
-
     esc_egreso: false,
-
     comprobante: false
 
 };
@@ -1428,7 +1353,6 @@ function validarComprobante() {
             "g-comprobante"
         );
 
-
     const archivo =
         comprobante.files[0];
 
@@ -1462,7 +1386,6 @@ function validarComprobante() {
     const tiposPermitidos = [
 
         "image/jpeg",
-
         "image/png"
 
     ];
@@ -1564,7 +1487,7 @@ function validarComprobante() {
 
 
 // ============================================================
-// VISTA PREVIA
+// VISTA PREVIA DEL COMPROBANTE
 // ============================================================
 
 comprobante.addEventListener(
@@ -1572,7 +1495,6 @@ comprobante.addEventListener(
     function() {
 
         statusText.innerText = "";
-
         statusText.className = "";
 
 
@@ -1584,6 +1506,10 @@ comprobante.addEventListener(
 
             previewContainer.style.display =
                 "none";
+
+            previewImagen.src = "";
+
+            nombreArchivo.innerText = "";
 
             validarComprobante();
 
@@ -1598,6 +1524,10 @@ comprobante.addEventListener(
 
             previewContainer.style.display =
                 "none";
+
+            previewImagen.src = "";
+
+            nombreArchivo.innerText = "";
 
             return;
 
@@ -1620,6 +1550,21 @@ comprobante.addEventListener(
 
                 previewContainer.style.display =
                     "block";
+
+            };
+
+
+        lector.onerror =
+            function() {
+
+                previewContainer.style.display =
+                    "none";
+
+                statusText.className =
+                    "error-general";
+
+                statusText.innerText =
+                    "No fue posible visualizar el comprobante.";
 
             };
 
@@ -1766,132 +1711,86 @@ function validarEntrada(e) {
 // ============================================================
 
 function verificarDuplicados(dni, email) {
+
     const MAX_INTENTOS = 3;
+
     const TIEMPO_ESPERA = 7000;
 
+
     function realizarIntento() {
-        return new Promise(function(resolve, reject) {
 
-            const callbackName =
-                "respuestaVerificacion_" +
-                Date.now() + "_" +
-                Math.floor(Math.random() * 100000);
+        return new Promise(
+            function(resolve, reject) {
 
-            const script = document.createElement("script");
-            let finalizado = false;
-            let timeoutId = null;
+                const callbackName =
+                    "respuestaVerificacion_" +
+                    Date.now() +
+                    "_" +
+                    Math.floor(
+                        Math.random() * 100000
+                    );
 
-            function limpiar() {
-                if (timeoutId) {
-                    clearTimeout(timeoutId);
-                }
 
-                try {
-                    delete window[callbackName];
-                } catch (e) {
-                    window[callbackName] = undefined;
-                }
+                const script =
+                    document.createElement(
+                        "script"
+                    );
 
-                if (script.parentNode) {
-                    script.parentNode.removeChild(script);
-                }
-            }
 
-            window[callbackName] = function(resultado) {
+                let finalizado = false;
 
-                if (finalizado) {
-                    return;
-                }
+                let timeoutId = null;
 
-                finalizado = true;
-                limpiar();
 
-                resolve(resultado);
-            };
+                function limpiar() {
 
-            script.onerror = function() {
+                    if (timeoutId) {
 
-                if (finalizado) {
-                    return;
-                }
+                        clearTimeout(
+                            timeoutId
+                        );
 
-                finalizado = true;
-                limpiar();
+                    }
 
-                reject(new Error("No fue posible verificar los datos."));
-            };
 
-            const url =
-                GOOGLE_SCRIPT_URL +
-                "?accion=verificar" +
-                "&dni=" + encodeURIComponent(dni) +
-                "&email=" + encodeURIComponent(email) +
-                "&callback=" + encodeURIComponent(callbackName) +
-                "&_=" + Date.now();
+                    try {
 
-            script.src = url;
+                        delete window[
+                            callbackName
+                        ];
 
-            document.body.appendChild(script);
+                    } catch (error) {
 
-            timeoutId = setTimeout(function() {
+                        window[
+                            callbackName
+                        ] = undefined;
 
-                if (finalizado) {
-                    return;
-                }
+                    }
 
-                finalizado = true;
-                limpiar();
 
-                reject(new Error("La verificación tardó demasiado."));
-            }, TIEMPO_ESPERA);
-        });
-    }
+                    if (
+                        script.parentNode
+                    ) {
 
-    return (async function() {
+                        script.parentNode.removeChild(
+                            script
+                        );
 
-        let ultimoError = null;
-
-        for (let numeroIntento = 1; numeroIntento <= MAX_INTENTOS; numeroIntento++) {
-
-            try {
-
-                const resultado = await realizarIntento();
-
-                if (resultado && resultado.status === "success") {
-                    return resultado;
-                }
-
-                throw new Error("Respuesta inválida del servidor.");
-
-            } catch (error) {
-
-                ultimoError = error;
-
-                if (numeroIntento < MAX_INTENTOS) {
-
-                    await new Promise(function(resolve) {
-                        setTimeout(resolve, 500);
-                    });
+                    }
 
                 }
-            }
-        }
 
-        throw ultimoError || new Error("No fue posible verificar los datos.");
 
-    })();
-}
-
-            // ------------------------------------------------
-            // FUNCIÓN JSONP
-            // ------------------------------------------------
-
-            window[callbackName] =
-                function(resultado) {
+                window[
+                    callbackName
+                ] = function(resultado) {
 
                     if (finalizado) {
+
                         return;
+
                     }
+
 
                     finalizado = true;
 
@@ -1899,132 +1798,166 @@ function verificarDuplicados(dni, email) {
                     limpiar();
 
 
-                    resolve(resultado);
-
-                };
-
-
-            // ------------------------------------------------
-            // ERROR
-            // ------------------------------------------------
-
-            script.onerror =
-                function() {
-
-                    if (finalizado) {
-                        return;
-                    }
-
-                    finalizado = true;
-
-
-                    limpiar();
-
-
-                    reject(
-                        new Error(
-                            "No fue posible verificar los datos."
-                        )
+                    resolve(
+                        resultado
                     );
 
                 };
 
 
-            // ------------------------------------------------
-            // URL
-            // ------------------------------------------------
+                script.onerror =
+                    function() {
 
-            const url =
+                        if (finalizado) {
 
-                GOOGLE_SCRIPT_URL +
+                            return;
 
-                "?accion=verificar" +
-
-                "&dni=" +
-                encodeURIComponent(dni) +
-
-                "&email=" +
-                encodeURIComponent(email) +
-
-                "&callback=" +
-                encodeURIComponent(callbackName);
+                        }
 
 
-            script.src =
-                url;
+                        finalizado = true;
 
 
-            document
-                .body
-                .appendChild(
+                        limpiar();
+
+
+                        reject(
+                            new Error(
+                                "No fue posible verificar los datos."
+                            )
+                        );
+
+                    };
+
+
+                const url =
+                    GOOGLE_SCRIPT_URL +
+                    "?accion=verificar" +
+                    "&dni=" +
+                    encodeURIComponent(dni) +
+                    "&email=" +
+                    encodeURIComponent(email) +
+                    "&callback=" +
+                    encodeURIComponent(callbackName) +
+                    "&_=" +
+                    Date.now();
+
+
+                script.src =
+                    url;
+
+
+                document.body.appendChild(
                     script
                 );
 
 
-            // ------------------------------------------------
-            // TIEMPO MÁXIMO
-            // ------------------------------------------------
+                timeoutId =
+                    setTimeout(
+                        function() {
 
-            setTimeout(
-                function() {
+                            if (finalizado) {
 
-                    if (finalizado) {
-                        return;
-                    }
+                                return;
 
-                    finalizado = true;
+                            }
 
 
-                    limpiar();
+                            finalizado = true;
 
 
-                    reject(
-                        new Error(
-                            "La verificación tardó demasiado."
-                        )
+                            limpiar();
+
+
+                            reject(
+                                new Error(
+                                    "La verificación tardó demasiado."
+                                )
+                            );
+
+                        },
+                        TIEMPO_ESPERA
                     );
 
-                },
-                15000
-            );
+            }
+        );
+
+    }
 
 
-            // ------------------------------------------------
-            // LIMPIAR
-            // ------------------------------------------------
+    return (
+        async function() {
 
-            function limpiar() {
+            let ultimoError =
+                null;
+
+
+            for (
+                let numeroIntento = 1;
+                numeroIntento <= MAX_INTENTOS;
+                numeroIntento++
+            ) {
 
                 try {
 
-                    delete window[
-                        callbackName
-                    ];
+                    const resultado =
+                        await realizarIntento();
+
+
+                    if (
+                        resultado &&
+                        resultado.status ===
+                        "success"
+                    ) {
+
+                        return resultado;
+
+                    }
+
+
+                    throw new Error(
+                        "Respuesta inválida del servidor."
+                    );
+
 
                 } catch (error) {
 
-                    window[
-                        callbackName
-                    ] = undefined;
-
-                }
+                    ultimoError =
+                        error;
 
 
-                if (
-                    script.parentNode
-                ) {
+                    if (
+                        numeroIntento <
+                        MAX_INTENTOS
+                    ) {
 
-                    script.parentNode
-                        .removeChild(
-                            script
+                        await new Promise(
+                            function(resolve) {
+
+                                setTimeout(
+                                    resolve,
+                                    500
+                                );
+
+                            }
                         );
+
+                    }
 
                 }
 
             }
 
+
+            throw (
+                ultimoError ||
+                new Error(
+                    "No fue posible verificar los datos."
+                )
+            );
+
         }
-    );
+    )();
 
 }
 
@@ -2056,7 +1989,9 @@ function archivoABase64(
                             .split(",")[1];
 
 
-                    resolve(base64);
+                    resolve(
+                        base64
+                    );
 
                 };
 
@@ -2064,7 +1999,9 @@ function archivoABase64(
             lector.onerror =
                 function(error) {
 
-                    reject(error);
+                    reject(
+                        error
+                    );
 
                 };
 
@@ -2146,7 +2083,7 @@ function mostrarErrorDuplicado(
 
 
 // ============================================================
-// RESTAURAR MENSAJE ORIGINAL
+// RESTAURAR MENSAJES ORIGINALES
 // ============================================================
 
 function restaurarMensajes() {
@@ -2251,6 +2188,7 @@ function limpiarFormulario() {
     statusText.innerText =
         "";
 
+
     statusText.className =
         "";
 
@@ -2307,9 +2245,11 @@ form.addEventListener(
         e.preventDefault();
 
 
-        statusText.innerText = "";
+        statusText.innerText =
+            "";
 
-        statusText.className = "";
+        statusText.className =
+            "";
 
 
         restaurarMensajes();
@@ -2402,8 +2342,10 @@ form.addEventListener(
             statusText.className =
                 "error-general";
 
+
             statusText.innerText =
                 "Revisa los campos marcados en rojo.";
+
 
             return;
 
@@ -2434,8 +2376,10 @@ form.addEventListener(
             statusText.className =
                 "error-general";
 
+
             statusText.innerText =
                 "Debes adjuntar el comprobante de pago.";
+
 
             return;
 
@@ -2669,9 +2613,11 @@ form.addEventListener(
 
                 {
 
-                    method: "POST",
+                    method:
+                        "POST",
 
-                    mode: "no-cors",
+                    mode:
+                        "no-cors",
 
                     headers: {
 
@@ -2695,14 +2641,6 @@ form.addEventListener(
             mostrarConfirmacion(
                 "Registrada"
             );
-
-
-            // =================================================
-            // NOTA:
-            // El ID real se genera en Apps Script.
-            // Como no-cors no permite leer la respuesta,
-            // dejamos una confirmación general.
-            // =================================================
 
 
         } catch (error) {
