@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
@@ -11,10 +10,7 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>
-    Inscripción de Alumnos
-</title>
-
+<title>Inscripción de Alumnos</title>
 
 <style>
 
@@ -226,8 +222,7 @@ input:focus {
 
     border-color: #0284c7;
 
-    background-color:
-        #ffffff;
+    background-color: #ffffff;
 
     box-shadow:
         0 0 0 4px
@@ -276,9 +271,9 @@ input:focus {
 }
 
 
-/* ==================================================
+/* ============================================================
    COMPROBANTE
-================================================== */
+============================================================ */
 
 .comprobante-box {
 
@@ -512,6 +507,186 @@ button:disabled {
 }
 
 
+/* ============================================================
+   PANTALLA DE CONFIRMACIÓN
+============================================================ */
+
+#pantallaConfirmacion {
+
+    display: none;
+
+    width: 100%;
+
+    max-width: 550px;
+
+    background:
+        var(--card-bg);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 25px -5px
+        rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
+
+}
+
+
+.confirmacion-header {
+
+    background:
+        var(--header-bg);
+
+    text-align: center;
+
+    padding: 35px 20px;
+
+    color: white;
+
+}
+
+
+.confirmacion-icono {
+
+    width: 75px;
+
+    height: 75px;
+
+    margin:
+        0 auto 15px auto;
+
+    border-radius: 50%;
+
+    background:
+        #22c55e;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+}
+
+
+.confirmacion-header h2 {
+
+    font-size: 25px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.confirmacion-header p {
+
+    font-size: 14px;
+
+    opacity: 0.95;
+
+}
+
+
+.confirmacion-content {
+
+    padding: 35px 30px;
+
+    text-align: center;
+
+}
+
+
+.confirmacion-content h3 {
+
+    color:
+        var(--success);
+
+    font-size: 21px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.confirmacion-content p {
+
+    color:
+        var(--text-muted);
+
+    line-height: 1.6;
+
+    margin-bottom: 12px;
+
+}
+
+
+.numero-inscripcion {
+
+    background:
+        #f0f9ff;
+
+    border:
+        1px solid #bae6fd;
+
+    border-radius: 10px;
+
+    padding: 15px;
+
+    margin:
+        20px 0;
+
+}
+
+
+.numero-inscripcion span {
+
+    display: block;
+
+    font-size: 13px;
+
+    color:
+        var(--text-muted);
+
+    margin-bottom: 5px;
+
+}
+
+
+.numero-inscripcion strong {
+
+    display: block;
+
+    color:
+        #0284c7;
+
+    font-size: 28px;
+
+}
+
+
+#btnFinalizar {
+
+    background:
+        var(--primary);
+
+}
+
+
+#btnFinalizar:hover {
+
+    background:
+        var(--primary-hover);
+
+}
+
+
 @media (max-width: 600px) {
 
     .form-row {
@@ -537,6 +712,13 @@ button:disabled {
 
     }
 
+
+    .confirmacion-content {
+
+        padding: 30px 20px;
+
+    }
+
 }
 
 </style>
@@ -547,7 +729,14 @@ button:disabled {
 <body>
 
 
-<div class="container">
+<!-- =========================================================
+     FORMULARIO
+========================================================== -->
+
+<div
+    class="container"
+    id="formularioContainer"
+>
 
 
     <div class="header">
@@ -572,9 +761,7 @@ button:disabled {
         >
 
 
-            <!-- ======================================
-                 DNI
-            ======================================= -->
+            <!-- DNI -->
 
             <div
                 class="form-group"
@@ -596,16 +783,13 @@ button:disabled {
                 >
 
                 <div class="error-message">
-                    El DNI debe contener entre 7 y 10
-                    dígitos numéricos.
+                    El DNI debe contener entre 7 y 10 dígitos numéricos.
                 </div>
 
             </div>
 
 
-            <!-- ======================================
-                 APELLIDO / NOMBRE
-            ======================================= -->
+            <!-- APELLIDO / NOMBRE -->
 
             <div class="form-row">
 
@@ -661,9 +845,7 @@ button:disabled {
             </div>
 
 
-            <!-- ======================================
-                 EMAIL
-            ======================================= -->
+            <!-- EMAIL -->
 
             <div
                 class="form-group"
@@ -689,9 +871,7 @@ button:disabled {
             </div>
 
 
-            <!-- ======================================
-                 TELEFONO / DIRECCION
-            ======================================= -->
+            <!-- TELEFONO / DIRECCION -->
 
             <div class="form-row">
 
@@ -716,8 +896,7 @@ button:disabled {
                     >
 
                     <div class="error-message">
-                        El teléfono debe contener entre 8 y
-                        15 números.
+                        El teléfono debe contener entre 8 y 15 números.
                     </div>
 
                 </div>
@@ -750,9 +929,7 @@ button:disabled {
             </div>
 
 
-            <!-- ======================================
-                 PROVINCIA / LOCALIDAD
-            ======================================= -->
+            <!-- PROVINCIA / LOCALIDAD -->
 
             <div class="form-row">
 
@@ -808,9 +985,7 @@ button:disabled {
             </div>
 
 
-            <!-- ======================================
-                 ESCUELA
-            ======================================= -->
+            <!-- ESCUELA -->
 
             <div
                 class="form-group"
@@ -836,9 +1011,7 @@ button:disabled {
             </div>
 
 
-            <!-- ======================================
-                 COMPROBANTE
-            ======================================= -->
+            <!-- COMPROBANTE -->
 
             <div
                 class="form-group"
@@ -899,17 +1072,13 @@ button:disabled {
             </div>
 
 
-            <!-- ======================================
-                 BOTÓN
-            ======================================= -->
+            <!-- BOTON -->
 
             <button
                 type="submit"
                 id="btnSubmit"
             >
-
                 Enviar Datos al Archivo
-
             </button>
 
 
@@ -917,6 +1086,83 @@ button:disabled {
 
 
         </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     PANTALLA DE CONFIRMACIÓN
+========================================================== -->
+
+<div
+    id="pantallaConfirmacion"
+>
+
+
+    <div class="confirmacion-header">
+
+
+        <div class="confirmacion-icono">
+            ✓
+        </div>
+
+
+        <h2>
+            ¡Inscripción realizada!
+        </h2>
+
+
+        <p>
+            La información fue recibida correctamente.
+        </p>
+
+
+    </div>
+
+
+    <div class="confirmacion-content">
+
+
+        <h3>
+            Datos guardados correctamente
+        </h3>
+
+
+        <p>
+            Tu inscripción fue registrada
+            junto con el comprobante de pago.
+        </p>
+
+
+        <div class="numero-inscripcion">
+
+            <span>
+                Número de inscripción
+            </span>
+
+            <strong
+                id="numeroInscripcion"
+            >
+                -
+            </strong>
+
+        </div>
+
+
+        <p>
+            Puedes finalizar y volver al formulario
+            para realizar una nueva inscripción.
+        </p>
+
+
+        <button
+            type="button"
+            id="btnFinalizar"
+        >
+            Finalizar
+        </button>
 
 
     </div>
@@ -928,7 +1174,7 @@ button:disabled {
 
 
 // ============================================================
-// URL DE GOOGLE APPS SCRIPT
+// URL DE APPS SCRIPT
 // ============================================================
 
 const GOOGLE_SCRIPT_URL =
@@ -936,7 +1182,7 @@ const GOOGLE_SCRIPT_URL =
 
 
 // ============================================================
-// TAMAÑO MÁXIMO
+// CONFIGURACIÓN
 // ============================================================
 
 const MAX_FILE_SIZE =
@@ -995,6 +1241,30 @@ const nombreArchivo =
     );
 
 
+const formularioContainer =
+    document.getElementById(
+        "formularioContainer"
+    );
+
+
+const pantallaConfirmacion =
+    document.getElementById(
+        "pantallaConfirmacion"
+    );
+
+
+const numeroInscripcion =
+    document.getElementById(
+        "numeroInscripcion"
+    );
+
+
+const btnFinalizar =
+    document.getElementById(
+        "btnFinalizar"
+    );
+
+
 // ============================================================
 // EXPRESIONES
 // ============================================================
@@ -1020,7 +1290,7 @@ const expresiones = {
 
 
 // ============================================================
-// ESTADO
+// CAMPOS VÁLIDOS
 // ============================================================
 
 const camposValidos = {
@@ -1100,7 +1370,7 @@ function validarCampoRegEx(
 
 
 // ============================================================
-// VALIDAR TEXTO
+// VALIDAR VACÍO
 // ============================================================
 
 function validarCampoVacio(
@@ -1163,10 +1433,6 @@ function validarComprobante() {
         comprobante.files[0];
 
 
-    // ----------------------------------------------
-    // NO HAY ARCHIVO
-    // ----------------------------------------------
-
     if (!archivo) {
 
         grupo.classList.remove(
@@ -1192,10 +1458,6 @@ function validarComprobante() {
 
     }
 
-
-    // ----------------------------------------------
-    // TIPO
-    // ----------------------------------------------
 
     const tiposPermitidos = [
 
@@ -1242,10 +1504,6 @@ function validarComprobante() {
     }
 
 
-    // ----------------------------------------------
-    // TAMAÑO
-    // ----------------------------------------------
-
     if (
         archivo.size >
         MAX_FILE_SIZE
@@ -1281,10 +1539,6 @@ function validarComprobante() {
     }
 
 
-    // ----------------------------------------------
-    // TODO CORRECTO
-    // ----------------------------------------------
-
     grupo.classList.remove(
         "invalido"
     );
@@ -1310,7 +1564,7 @@ function validarComprobante() {
 
 
 // ============================================================
-// PREVISUALIZAR COMPROBANTE
+// VISTA PREVIA
 // ============================================================
 
 comprobante.addEventListener(
@@ -1407,7 +1661,6 @@ function validarEntrada(e) {
     switch (
         e.target.name
     ) {
-
 
         case "dni":
 
@@ -1509,6 +1762,185 @@ function validarEntrada(e) {
 
 
 // ============================================================
+// VERIFICAR DNI Y EMAIL EN GOOGLE
+// ============================================================
+
+function verificarDuplicados(
+    dni,
+    email
+) {
+
+    return new Promise(
+        function(resolve, reject) {
+
+
+            const callbackName =
+                "respuestaVerificacion_" +
+                Date.now() +
+                "_" +
+                Math.floor(
+                    Math.random() * 100000
+                );
+
+
+            const script =
+                document.createElement(
+                    "script"
+                );
+
+
+            let finalizado =
+                false;
+
+
+            // ------------------------------------------------
+            // FUNCIÓN JSONP
+            // ------------------------------------------------
+
+            window[callbackName] =
+                function(resultado) {
+
+                    if (finalizado) {
+                        return;
+                    }
+
+                    finalizado = true;
+
+
+                    limpiar();
+
+
+                    resolve(resultado);
+
+                };
+
+
+            // ------------------------------------------------
+            // ERROR
+            // ------------------------------------------------
+
+            script.onerror =
+                function() {
+
+                    if (finalizado) {
+                        return;
+                    }
+
+                    finalizado = true;
+
+
+                    limpiar();
+
+
+                    reject(
+                        new Error(
+                            "No fue posible verificar los datos."
+                        )
+                    );
+
+                };
+
+
+            // ------------------------------------------------
+            // URL
+            // ------------------------------------------------
+
+            const url =
+
+                GOOGLE_SCRIPT_URL +
+
+                "?accion=verificar" +
+
+                "&dni=" +
+                encodeURIComponent(dni) +
+
+                "&email=" +
+                encodeURIComponent(email) +
+
+                "&callback=" +
+                encodeURIComponent(callbackName);
+
+
+            script.src =
+                url;
+
+
+            document
+                .body
+                .appendChild(
+                    script
+                );
+
+
+            // ------------------------------------------------
+            // TIEMPO MÁXIMO
+            // ------------------------------------------------
+
+            setTimeout(
+                function() {
+
+                    if (finalizado) {
+                        return;
+                    }
+
+                    finalizado = true;
+
+
+                    limpiar();
+
+
+                    reject(
+                        new Error(
+                            "La verificación tardó demasiado."
+                        )
+                    );
+
+                },
+                15000
+            );
+
+
+            // ------------------------------------------------
+            // LIMPIAR
+            // ------------------------------------------------
+
+            function limpiar() {
+
+                try {
+
+                    delete window[
+                        callbackName
+                    ];
+
+                } catch (error) {
+
+                    window[
+                        callbackName
+                    ] = undefined;
+
+                }
+
+
+                if (
+                    script.parentNode
+                ) {
+
+                    script.parentNode
+                        .removeChild(
+                            script
+                        );
+
+                }
+
+            }
+
+        }
+    );
+
+}
+
+
+// ============================================================
 // CONVERTIR ARCHIVO A BASE64
 // ============================================================
 
@@ -1529,9 +1961,6 @@ function archivoABase64(
                     const resultado =
                         lector.result;
 
-
-                    // Eliminar:
-                    // data:image/jpeg;base64,
 
                     const base64 =
                         resultado
@@ -1562,6 +1991,223 @@ function archivoABase64(
 
 
 // ============================================================
+// MOSTRAR ERROR DE DUPLICADO
+// ============================================================
+
+function mostrarErrorDuplicado(
+    campo,
+    mensaje
+) {
+
+    const grupo =
+        document.getElementById(
+            `g-${campo}`
+        );
+
+
+    grupo.classList.remove(
+        "valido"
+    );
+
+
+    grupo.classList.add(
+        "invalido"
+    );
+
+
+    const mensajeError =
+        grupo.querySelector(
+            ".error-message"
+        );
+
+
+    if (mensajeError) {
+
+        mensajeError.innerText =
+            mensaje;
+
+    }
+
+
+    camposValidos[campo] =
+        false;
+
+
+    statusText.className =
+        "error-general";
+
+
+    statusText.innerText =
+        mensaje;
+
+
+    const input =
+        document.getElementById(
+            campo
+        );
+
+
+    if (input) {
+
+        input.focus();
+
+    }
+
+}
+
+
+// ============================================================
+// RESTAURAR MENSAJE ORIGINAL
+// ============================================================
+
+function restaurarMensajes() {
+
+    document.querySelector(
+        "#g-dni .error-message"
+    ).innerText =
+        "El DNI debe contener entre 7 y 10 dígitos numéricos.";
+
+
+    document.querySelector(
+        "#g-email .error-message"
+    ).innerText =
+        "Introduce un correo electrónico válido.";
+
+}
+
+
+// ============================================================
+// MOSTRAR CONFIRMACIÓN
+// ============================================================
+
+function mostrarConfirmacion(
+    id
+) {
+
+    numeroInscripcion.innerText =
+        id;
+
+
+    formularioContainer.style.display =
+        "none";
+
+
+    pantallaConfirmacion.style.display =
+        "block";
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+}
+
+
+// ============================================================
+// LIMPIAR FORMULARIO COMPLETAMENTE
+// ============================================================
+
+function limpiarFormulario() {
+
+    form.reset();
+
+
+    previewContainer.style.display =
+        "none";
+
+
+    previewImagen.src =
+        "";
+
+
+    nombreArchivo.innerText =
+        "";
+
+
+    comprobanteBox.classList.remove(
+        "valido",
+        "invalido"
+    );
+
+
+    document
+        .querySelectorAll(
+            ".form-group"
+        )
+        .forEach(
+            function(grupo) {
+
+                grupo.classList.remove(
+                    "valido",
+                    "invalido"
+                );
+
+            }
+        );
+
+
+    Object.keys(
+        camposValidos
+    ).forEach(
+        function(campo) {
+
+            camposValidos[campo] =
+                false;
+
+        }
+    );
+
+
+    statusText.innerText =
+        "";
+
+    statusText.className =
+        "";
+
+
+    restaurarMensajes();
+
+
+    btnSubmit.disabled =
+        false;
+
+
+    btnSubmit.innerText =
+        "Enviar Datos al Archivo";
+
+}
+
+
+// ============================================================
+// BOTÓN FINALIZAR
+// ============================================================
+
+btnFinalizar.addEventListener(
+    "click",
+    function() {
+
+        limpiarFormulario();
+
+
+        pantallaConfirmacion.style.display =
+            "none";
+
+
+        formularioContainer.style.display =
+            "block";
+
+
+        window.scrollTo(
+            0,
+            0
+        );
+
+    }
+);
+
+
+// ============================================================
 // SUBMIT
 // ============================================================
 
@@ -1577,8 +2223,11 @@ form.addEventListener(
         statusText.className = "";
 
 
+        restaurarMensajes();
+
+
         // ====================================================
-        // VALIDAR TODOS LOS CAMPOS
+        // VALIDACIONES
         // ====================================================
 
         validarCampoRegEx(
@@ -1644,7 +2293,7 @@ form.addEventListener(
 
 
         // ====================================================
-        // COMPROBAR
+        // COMPROBAR CAMPOS
         // ====================================================
 
         const todoValido =
@@ -1672,9 +2321,20 @@ form.addEventListener(
         }
 
 
-        // ====================================================
-        // OBTENER ARCHIVO
-        // ====================================================
+        const dni =
+            document
+                .getElementById("dni")
+                .value
+                .trim();
+
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim()
+                .toLowerCase();
+
 
         const archivo =
             comprobante.files[0];
@@ -1694,28 +2354,106 @@ form.addEventListener(
 
 
         // ====================================================
-        // BLOQUEAR BOTÓN
+        // BLOQUEAR
         // ====================================================
 
         btnSubmit.disabled =
             true;
 
+
         btnSubmit.innerText =
-            "Procesando comprobante...";
+            "Verificando datos...";
 
-
-        statusText.className = "";
 
         statusText.innerText =
-            "Preparando el comprobante de pago...";
+            "Comprobando DNI y correo electrónico...";
 
 
         try {
 
 
-            // ==================================================
-            // CONVERTIR IMAGEN
-            // ==================================================
+            // =================================================
+            // VERIFICAR DNI / EMAIL
+            // =================================================
+
+            const resultado =
+                await verificarDuplicados(
+                    dni,
+                    email
+                );
+
+
+            // =================================================
+            // DNI REPETIDO
+            // =================================================
+
+            if (
+                resultado.dniExiste
+            ) {
+
+                mostrarErrorDuplicado(
+
+                    "dni",
+
+                    "El DNI ingresado ya se encuentra registrado."
+
+                );
+
+
+                btnSubmit.disabled =
+                    false;
+
+
+                btnSubmit.innerText =
+                    "Enviar Datos al Archivo";
+
+
+                return;
+
+            }
+
+
+            // =================================================
+            // EMAIL REPETIDO
+            // =================================================
+
+            if (
+                resultado.emailExiste
+            ) {
+
+                mostrarErrorDuplicado(
+
+                    "email",
+
+                    "El Correo Electrónico ingresado ya se encuentra registrado."
+
+                );
+
+
+                btnSubmit.disabled =
+                    false;
+
+
+                btnSubmit.innerText =
+                    "Enviar Datos al Archivo";
+
+
+                return;
+
+            }
+
+
+            // =================================================
+            // CONVERTIR COMPROBANTE
+            // =================================================
+
+            btnSubmit.innerText =
+                "Procesando comprobante...";
+
+
+            statusText.innerText =
+                "Preparando el comprobante de pago...";
+
 
             const base64 =
                 await archivoABase64(
@@ -1723,9 +2461,9 @@ form.addEventListener(
                 );
 
 
-            // ==================================================
+            // =================================================
             // CREAR DATOS
-            // ==================================================
+            // =================================================
 
             const datos =
                 new URLSearchParams();
@@ -1733,10 +2471,7 @@ form.addEventListener(
 
             datos.append(
                 "dni",
-                document
-                    .getElementById("dni")
-                    .value
-                    .trim()
+                dni
             );
 
 
@@ -1760,11 +2495,7 @@ form.addEventListener(
 
             datos.append(
                 "email",
-                document
-                    .getElementById("email")
-                    .value
-                    .trim()
-                    .toLowerCase()
+                email
             );
 
 
@@ -1831,9 +2562,9 @@ form.addEventListener(
             );
 
 
-            // ==================================================
-            // MENSAJE
-            // ==================================================
+            // =================================================
+            // ENVIAR
+            // =================================================
 
             btnSubmit.innerText =
                 "Enviando información...";
@@ -1843,12 +2574,10 @@ form.addEventListener(
                 "Guardando datos y comprobante...";
 
 
-            // ==================================================
-            // ENVIAR
-            // ==================================================
-
             await fetch(
+
                 GOOGLE_SCRIPT_URL,
+
                 {
 
                     method: "POST",
@@ -1866,91 +2595,25 @@ form.addEventListener(
                         datos.toString()
 
                 }
+
             );
 
 
-            // ==================================================
-            // IMPORTANTE
-            // ==================================================
-            //
-            // no-cors no permite leer la respuesta de Google.
-            // Por eso la confirmación se realiza cuando el
-            // navegador termina la solicitud.
-            //
-            // ==================================================
+            // =================================================
+            // CONFIRMACIÓN
+            // =================================================
 
-            statusText.className =
-                "success-message";
-
-
-            statusText.innerHTML =
-
-                "¡Datos enviados correctamente!<br><br>" +
-
-                "El comprobante de pago también fue enviado.<br>" +
-
-                "La inscripción está siendo registrada.";
-
-
-            // ==================================================
-            // LIMPIAR
-            // ==================================================
-
-            form.reset();
-
-
-            previewContainer.style.display =
-                "none";
-
-
-            previewImagen.src =
-                "";
-
-
-            nombreArchivo.innerText =
-                "";
-
-
-            comprobanteBox.classList.remove(
-                "valido",
-                "invalido"
+            mostrarConfirmacion(
+                "Registrada"
             );
 
 
-            document
-                .querySelectorAll(
-                    ".form-group"
-                )
-                .forEach(
-                    function(grupo) {
-
-                        grupo.classList.remove(
-                            "valido",
-                            "invalido"
-                        );
-
-                    }
-                );
-
-
-            Object.keys(
-                camposValidos
-            ).forEach(
-                function(campo) {
-
-                    camposValidos[campo] =
-                        false;
-
-                }
-            );
-
-
-            btnSubmit.disabled =
-                false;
-
-
-            btnSubmit.innerText =
-                "Enviar Datos al Archivo";
+            // =================================================
+            // NOTA:
+            // El ID real se genera en Apps Script.
+            // Como no-cors no permite leer la respuesta,
+            // dejamos una confirmación general.
+            // =================================================
 
 
         } catch (error) {
@@ -1967,7 +2630,7 @@ form.addEventListener(
 
 
             statusText.innerText =
-                "No fue posible enviar la información. Inténtalo nuevamente.";
+                "No fue posible verificar o enviar la información. Inténtalo nuevamente.";
 
 
             btnSubmit.disabled =
@@ -1983,7 +2646,6 @@ form.addEventListener(
 );
 
 </script>
-
 
 </body>
 
