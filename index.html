@@ -6,9 +6,14 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-<title>Inscripción de Alumnos</title>
+<title>
+    Inscripción de Alumnos
+</title>
 
 
 <style>
@@ -50,16 +55,22 @@
 
     padding: 0;
 
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-family:
+        'Segoe UI',
+        system-ui,
+        -apple-system,
+        sans-serif;
 
 }
 
 
 body {
 
-    background-color: var(--background);
+    background-color:
+        var(--background);
 
-    color: var(--text-main);
+    color:
+        var(--text-main);
 
     display: flex;
 
@@ -76,7 +87,8 @@ body {
 
 .container {
 
-    background: var(--card-bg);
+    background:
+        var(--card-bg);
 
     width: 100%;
 
@@ -84,7 +96,9 @@ body {
 
     border-radius: 16px;
 
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    box-shadow:
+        0 10px 25px -5px
+        rgba(0, 0, 0, 0.05);
 
     overflow: hidden;
 
@@ -95,13 +109,15 @@ body {
 
 .header {
 
-    background-color: var(--header-bg);
+    background-color:
+        var(--header-bg);
 
     text-align: center;
 
     padding: 30px 20px;
 
-    border-bottom: 2px solid #0369a1;
+    border-bottom:
+        2px solid #0369a1;
 
 }
 
@@ -112,7 +128,8 @@ body {
 
     font-weight: 700;
 
-    color: var(--header-text);
+    color:
+        var(--header-text);
 
     margin-bottom: 8px;
 
@@ -123,7 +140,8 @@ body {
 
     font-size: 14px;
 
-    color: var(--header-text);
+    color:
+        var(--header-text);
 
     opacity: 0.9;
 
@@ -185,15 +203,19 @@ input {
 
     font-size: 15px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid var(--border);
 
     border-radius: 8px;
 
-    background-color: var(--input-bg);
+    background-color:
+        var(--input-bg);
 
-    color: var(--text-main);
+    color:
+        var(--text-main);
 
-    transition: all 0.2s ease;
+    transition:
+        all 0.2s ease;
 
     outline: none;
 
@@ -204,51 +226,28 @@ input:focus {
 
     border-color: #0284c7;
 
-    background-color: #ffffff;
+    background-color:
+        #ffffff;
 
-    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+    box-shadow:
+        0 0 0 4px
+        rgba(2, 132, 199, 0.15);
 
 }
 
-
-/* ======================================
-   CAMPO VÁLIDO
-====================================== */
 
 .form-group.valido input {
 
-    border-color: var(--success);
-
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2316a34a'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'/%3E%3C/svg%3E");
-
-    background-repeat: no-repeat;
-
-    background-position: right 12px center;
-
-    background-size: 20px;
-
-    padding-right: 40px;
+    border-color:
+        var(--success);
 
 }
 
 
-/* ======================================
-   CAMPO INVÁLIDO
-====================================== */
-
 .form-group.invalido input {
 
-    border-color: var(--error);
-
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23dc2626'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'/%3E%3C/svg%3E");
-
-    background-repeat: no-repeat;
-
-    background-position: right 12px center;
-
-    background-size: 20px;
-
-    padding-right: 40px;
+    border-color:
+        var(--error);
 
 }
 
@@ -257,7 +256,8 @@ input:focus {
 
     font-size: 12px;
 
-    color: var(--error);
+    color:
+        var(--error);
 
     margin-top: 5px;
 
@@ -268,16 +268,133 @@ input:focus {
 }
 
 
-.form-group.invalido .error-message {
+.form-group.invalido
+.error-message {
 
     display: block;
 
 }
 
 
-/* ======================================
-   BOTÓN
-====================================== */
+/* ==================================================
+   COMPROBANTE
+================================================== */
+
+.comprobante-box {
+
+    border:
+        2px dashed #cbd5e1;
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+    background:
+        #f8fafc;
+
+    transition:
+        all 0.2s ease;
+
+}
+
+
+.comprobante-box:hover {
+
+    border-color:
+        #0284c7;
+
+    background:
+        #f0f9ff;
+
+}
+
+
+.comprobante-box.valido {
+
+    border-color:
+        var(--success);
+
+    background:
+        #f0fdf4;
+
+}
+
+
+.comprobante-box.invalido {
+
+    border-color:
+        var(--error);
+
+    background:
+        #fef2f2;
+
+}
+
+
+.comprobante-input {
+
+    background:
+        #ffffff;
+
+    cursor: pointer;
+
+}
+
+
+.comprobante-info {
+
+    margin-top: 8px;
+
+    font-size: 12px;
+
+    color:
+        var(--text-muted);
+
+}
+
+
+#previewContainer {
+
+    display: none;
+
+    margin-top: 15px;
+
+    text-align: center;
+
+}
+
+
+#previewImagen {
+
+    max-width: 100%;
+
+    max-height: 250px;
+
+    border-radius: 8px;
+
+    border:
+        1px solid #cbd5e1;
+
+    object-fit: contain;
+
+}
+
+
+#nombreArchivo {
+
+    margin-top: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color:
+        #334155;
+
+    word-break: break-word;
+
+}
+
 
 button {
 
@@ -285,9 +402,11 @@ button {
 
     padding: 15px;
 
-    background-color: var(--primary);
+    background-color:
+        var(--primary);
 
-    color: white;
+    color:
+        white;
 
     border: none;
 
@@ -297,44 +416,50 @@ button {
 
     font-weight: 700;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 
-    letter-spacing: 0.5px;
+    letter-spacing:
+        0.5px;
 
     cursor: pointer;
 
-    transition: all 0.2s ease;
+    transition:
+        all 0.2s ease;
 
     margin-top: 10px;
 
-    box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.2);
+    box-shadow:
+        0 4px 6px -1px
+        rgba(34, 197, 94, 0.2);
 
 }
 
 
 button:hover {
 
-    background-color: var(--primary-hover);
+    background-color:
+        var(--primary-hover);
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 
 }
 
 
 button:disabled {
 
-    background-color: #94a3b8;
+    background-color:
+        #94a3b8;
 
-    cursor: not-allowed;
+    cursor:
+        not-allowed;
 
-    transform: none;
+    transform:
+        none;
 
 }
 
-
-/* ======================================
-   MENSAJE DE ESTADO
-====================================== */
 
 #statusText {
 
@@ -353,11 +478,14 @@ button:disabled {
 
 .success-message {
 
-    background-color: #dcfce7;
+    background:
+        #dcfce7;
 
-    color: #166534;
+    color:
+        #166534;
 
-    border: 1px solid #86efac;
+    border:
+        1px solid #86efac;
 
     padding: 12px;
 
@@ -368,11 +496,14 @@ button:disabled {
 
 .error-general {
 
-    background-color: #fee2e2;
+    background:
+        #fee2e2;
 
-    color: #991b1b;
+    color:
+        #991b1b;
 
-    border: 1px solid #fca5a5;
+    border:
+        1px solid #fca5a5;
 
     padding: 12px;
 
@@ -381,26 +512,12 @@ button:disabled {
 }
 
 
-/* ======================================
-   IFRAME OCULTO
-====================================== */
-
-#googleResponseFrame {
-
-    display: none;
-
-}
-
-
-/* ======================================
-   RESPONSIVE
-====================================== */
-
 @media (max-width: 600px) {
 
     .form-row {
 
-        flex-direction: column;
+        flex-direction:
+            column;
 
         gap: 0;
 
@@ -449,35 +566,15 @@ button:disabled {
     <div class="form-content">
 
 
-        <!-- ==========================================
-             IFRAME OCULTO
-        =========================================== -->
-
-        <iframe
-            name="googleResponseFrame"
-            id="googleResponseFrame"
-            title="Respuesta de Google"
-        ></iframe>
-
-
-        <!-- ==========================================
-             FORMULARIO
-        =========================================== -->
-
         <form
             id="registroForm"
-
-            action="https://script.google.com/macros/s/AKfycbzYQkOIXuAFcZ3sbYYi7Vij7Zka4rlyJLcu3__jv_DHavcDRQDavur0m5zSYUNKkwOlEw/exec"
-
-            method="POST"
-
-            target="googleResponseFrame"
-
             novalidate
         >
 
 
-            <!-- DNI -->
+            <!-- ======================================
+                 DNI
+            ======================================= -->
 
             <div
                 class="form-group"
@@ -488,7 +585,6 @@ button:disabled {
                     DNI / Documento *
                 </label>
 
-
                 <input
                     type="text"
                     id="dni"
@@ -496,21 +592,20 @@ button:disabled {
                     placeholder="Solo números, sin puntos"
                     inputmode="numeric"
                     maxlength="10"
-                    autocomplete="off"
                     required
                 >
 
-
                 <div class="error-message">
-
-                    El DNI debe contener entre 7 y 10 dígitos numéricos.
-
+                    El DNI debe contener entre 7 y 10
+                    dígitos numéricos.
                 </div>
 
             </div>
 
 
-            <!-- APELLIDO Y NOMBRE -->
+            <!-- ======================================
+                 APELLIDO / NOMBRE
+            ======================================= -->
 
             <div class="form-row">
 
@@ -524,21 +619,16 @@ button:disabled {
                         Apellido *
                     </label>
 
-
                     <input
                         type="text"
                         id="apellido"
                         name="apellido"
                         placeholder="Ej. Pérez"
-                        autocomplete="family-name"
                         required
                     >
 
-
                     <div class="error-message">
-
-                        El apellido es obligatorio y debe ser válido.
-
+                        El apellido es obligatorio.
                     </div>
 
                 </div>
@@ -553,21 +643,16 @@ button:disabled {
                         Nombre *
                     </label>
 
-
                     <input
                         type="text"
                         id="nombre"
                         name="nombre"
                         placeholder="Ej. Juan"
-                        autocomplete="given-name"
                         required
                     >
 
-
                     <div class="error-message">
-
-                        El nombre es obligatorio y debe ser válido.
-
+                        El nombre es obligatorio.
                     </div>
 
                 </div>
@@ -576,7 +661,9 @@ button:disabled {
             </div>
 
 
-            <!-- EMAIL -->
+            <!-- ======================================
+                 EMAIL
+            ======================================= -->
 
             <div
                 class="form-group"
@@ -587,27 +674,24 @@ button:disabled {
                     Correo Electrónico *
                 </label>
 
-
                 <input
                     type="email"
                     id="email"
                     name="email"
                     placeholder="ejemplo@correo.com"
-                    autocomplete="email"
                     required
                 >
 
-
                 <div class="error-message">
-
-                    Introduce un formato de correo electrónico válido.
-
+                    Introduce un correo electrónico válido.
                 </div>
 
             </div>
 
 
-            <!-- TELÉFONO Y DIRECCIÓN -->
+            <!-- ======================================
+                 TELEFONO / DIRECCION
+            ======================================= -->
 
             <div class="form-row">
 
@@ -621,7 +705,6 @@ button:disabled {
                         Teléfono *
                     </label>
 
-
                     <input
                         type="tel"
                         id="telefono"
@@ -629,15 +712,12 @@ button:disabled {
                         placeholder="Mínimo 8 dígitos"
                         inputmode="numeric"
                         maxlength="15"
-                        autocomplete="tel"
                         required
                     >
 
-
                     <div class="error-message">
-
-                        El teléfono debe contener entre 8 y 15 números.
-
+                        El teléfono debe contener entre 8 y
+                        15 números.
                     </div>
 
                 </div>
@@ -652,21 +732,16 @@ button:disabled {
                         Dirección / Domicilio *
                     </label>
 
-
                     <input
                         type="text"
                         id="direccion"
                         name="direccion"
                         placeholder="Calle y número"
-                        autocomplete="street-address"
                         required
                     >
 
-
                     <div class="error-message">
-
                         La dirección es obligatoria.
-
                     </div>
 
                 </div>
@@ -675,7 +750,9 @@ button:disabled {
             </div>
 
 
-            <!-- PROVINCIA Y LOCALIDAD -->
+            <!-- ======================================
+                 PROVINCIA / LOCALIDAD
+            ======================================= -->
 
             <div class="form-row">
 
@@ -689,7 +766,6 @@ button:disabled {
                         Provincia *
                     </label>
 
-
                     <input
                         type="text"
                         id="provincia"
@@ -698,11 +774,8 @@ button:disabled {
                         required
                     >
 
-
                     <div class="error-message">
-
                         La provincia es obligatoria.
-
                     </div>
 
                 </div>
@@ -717,7 +790,6 @@ button:disabled {
                         Localidad *
                     </label>
 
-
                     <input
                         type="text"
                         id="localidad"
@@ -726,11 +798,8 @@ button:disabled {
                         required
                     >
 
-
                     <div class="error-message">
-
                         La localidad es obligatoria.
-
                     </div>
 
                 </div>
@@ -739,7 +808,9 @@ button:disabled {
             </div>
 
 
-            <!-- ESCUELA -->
+            <!-- ======================================
+                 ESCUELA
+            ======================================= -->
 
             <div
                 class="form-group"
@@ -750,7 +821,6 @@ button:disabled {
                     Escuela de Egreso *
                 </label>
 
-
                 <input
                     type="text"
                     id="esc_egreso"
@@ -759,17 +829,79 @@ button:disabled {
                     required
                 >
 
-
                 <div class="error-message">
-
                     La escuela de egreso es obligatoria.
-
                 </div>
 
             </div>
 
 
-            <!-- BOTÓN -->
+            <!-- ======================================
+                 COMPROBANTE
+            ======================================= -->
+
+            <div
+                class="form-group"
+                id="g-comprobante"
+            >
+
+                <label for="comprobante">
+                    Comprobante de Pago *
+                </label>
+
+
+                <div
+                    class="comprobante-box"
+                    id="comprobanteBox"
+                >
+
+                    <input
+                        type="file"
+                        id="comprobante"
+                        name="comprobante"
+                        class="comprobante-input"
+                        accept="image/jpeg,image/png"
+                        required
+                    >
+
+
+                    <div class="comprobante-info">
+
+                        Formatos permitidos:
+                        JPG, JPEG o PNG.
+
+                        <br>
+
+                        Tamaño máximo:
+                        5 MB.
+
+                    </div>
+
+
+                    <div id="previewContainer">
+
+                        <img
+                            id="previewImagen"
+                            alt="Vista previa del comprobante"
+                        >
+
+                        <div id="nombreArchivo"></div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="error-message">
+                    Debes adjuntar el comprobante de pago.
+                </div>
+
+            </div>
+
+
+            <!-- ======================================
+                 BOTÓN
+            ======================================= -->
 
             <button
                 type="submit"
@@ -780,8 +912,6 @@ button:disabled {
 
             </button>
 
-
-            <!-- ESTADO -->
 
             <div id="statusText"></div>
 
@@ -794,49 +924,104 @@ button:disabled {
 </div>
 
 
-
 <script>
 
 
-// ==========================================
+// ============================================================
+// URL DE GOOGLE APPS SCRIPT
+// ============================================================
+
+const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbzYQkOIXuAFcZ3sbYYi7Vij7Zka4rlyJLcu3__jv_DHavcDRQDavur0m5zSYUNKkwOlEw/exec";
+
+
+// ============================================================
+// TAMAÑO MÁXIMO
+// ============================================================
+
+const MAX_FILE_SIZE =
+    5 * 1024 * 1024;
+
+
+// ============================================================
 // ELEMENTOS
-// ==========================================
+// ============================================================
 
 const form =
-    document.getElementById("registroForm");
+    document.getElementById(
+        "registroForm"
+    );
 
 
 const btnSubmit =
-    document.getElementById("btnSubmit");
+    document.getElementById(
+        "btnSubmit"
+    );
 
 
 const statusText =
-    document.getElementById("statusText");
+    document.getElementById(
+        "statusText"
+    );
 
 
-// ==========================================
-// EXPRESIONES REGULARES
-// ==========================================
+const comprobante =
+    document.getElementById(
+        "comprobante"
+    );
+
+
+const comprobanteBox =
+    document.getElementById(
+        "comprobanteBox"
+    );
+
+
+const previewContainer =
+    document.getElementById(
+        "previewContainer"
+    );
+
+
+const previewImagen =
+    document.getElementById(
+        "previewImagen"
+    );
+
+
+const nombreArchivo =
+    document.getElementById(
+        "nombreArchivo"
+    );
+
+
+// ============================================================
+// EXPRESIONES
+// ============================================================
 
 const expresiones = {
 
-    dni: /^\d{7,10}$/,
+    dni:
+        /^\d{7,10}$/,
 
-    nombre: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
+    nombre:
+        /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
 
-    apellido: /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
+    apellido:
+        /^[a-zA-ZÀ-ÿ\s]{2,40}$/,
 
     email:
         /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 
-    telefono: /^\d{8,15}$/
+    telefono:
+        /^\d{8,15}$/
 
 };
 
 
-// ==========================================
-// ESTADO DE CAMPOS
-// ==========================================
+// ============================================================
+// ESTADO
+// ============================================================
 
 const camposValidos = {
 
@@ -856,14 +1041,16 @@ const camposValidos = {
 
     localidad: false,
 
-    esc_egreso: false
+    esc_egreso: false,
+
+    comprobante: false
 
 };
 
 
-// ==========================================
+// ============================================================
 // VALIDAR REGEX
-// ==========================================
+// ============================================================
 
 function validarCampoRegEx(
     expresion,
@@ -872,7 +1059,9 @@ function validarCampoRegEx(
 ) {
 
     const grupo =
-        document.getElementById(`g-${campo}`);
+        document.getElementById(
+            `g-${campo}`
+        );
 
 
     if (
@@ -881,28 +1070,38 @@ function validarCampoRegEx(
         )
     ) {
 
-        grupo.classList.remove("invalido");
+        grupo.classList.remove(
+            "invalido"
+        );
 
-        grupo.classList.add("valido");
+        grupo.classList.add(
+            "valido"
+        );
 
-        camposValidos[campo] = true;
+        camposValidos[campo] =
+            true;
 
     } else {
 
-        grupo.classList.remove("valido");
+        grupo.classList.remove(
+            "valido"
+        );
 
-        grupo.classList.add("invalido");
+        grupo.classList.add(
+            "invalido"
+        );
 
-        camposValidos[campo] = false;
+        camposValidos[campo] =
+            false;
 
     }
 
 }
 
 
-// ==========================================
-// VALIDAR CAMPO VACÍO
-// ==========================================
+// ============================================================
+// VALIDAR TEXTO
+// ============================================================
 
 function validarCampoVacio(
     input,
@@ -910,35 +1109,278 @@ function validarCampoVacio(
 ) {
 
     const grupo =
-        document.getElementById(`g-${campo}`);
+        document.getElementById(
+            `g-${campo}`
+        );
 
 
     if (
         input.value.trim() !== ""
     ) {
 
-        grupo.classList.remove("invalido");
+        grupo.classList.remove(
+            "invalido"
+        );
 
-        grupo.classList.add("valido");
+        grupo.classList.add(
+            "valido"
+        );
 
-        camposValidos[campo] = true;
+        camposValidos[campo] =
+            true;
 
     } else {
 
-        grupo.classList.remove("valido");
+        grupo.classList.remove(
+            "valido"
+        );
 
-        grupo.classList.add("invalido");
+        grupo.classList.add(
+            "invalido"
+        );
 
-        camposValidos[campo] = false;
+        camposValidos[campo] =
+            false;
 
     }
 
 }
 
 
-// ==========================================
+// ============================================================
+// VALIDAR COMPROBANTE
+// ============================================================
+
+function validarComprobante() {
+
+    const grupo =
+        document.getElementById(
+            "g-comprobante"
+        );
+
+
+    const archivo =
+        comprobante.files[0];
+
+
+    // ----------------------------------------------
+    // NO HAY ARCHIVO
+    // ----------------------------------------------
+
+    if (!archivo) {
+
+        grupo.classList.remove(
+            "valido"
+        );
+
+        grupo.classList.add(
+            "invalido"
+        );
+
+        comprobanteBox.classList.remove(
+            "valido"
+        );
+
+        comprobanteBox.classList.add(
+            "invalido"
+        );
+
+        camposValidos.comprobante =
+            false;
+
+        return false;
+
+    }
+
+
+    // ----------------------------------------------
+    // TIPO
+    // ----------------------------------------------
+
+    const tiposPermitidos = [
+
+        "image/jpeg",
+
+        "image/png"
+
+    ];
+
+
+    if (
+        !tiposPermitidos.includes(
+            archivo.type
+        )
+    ) {
+
+        grupo.classList.remove(
+            "valido"
+        );
+
+        grupo.classList.add(
+            "invalido"
+        );
+
+        comprobanteBox.classList.remove(
+            "valido"
+        );
+
+        comprobanteBox.classList.add(
+            "invalido"
+        );
+
+        camposValidos.comprobante =
+            false;
+
+        statusText.className =
+            "error-general";
+
+        statusText.innerText =
+            "El comprobante debe ser JPG, JPEG o PNG.";
+
+        return false;
+
+    }
+
+
+    // ----------------------------------------------
+    // TAMAÑO
+    // ----------------------------------------------
+
+    if (
+        archivo.size >
+        MAX_FILE_SIZE
+    ) {
+
+        grupo.classList.remove(
+            "valido"
+        );
+
+        grupo.classList.add(
+            "invalido"
+        );
+
+        comprobanteBox.classList.remove(
+            "valido"
+        );
+
+        comprobanteBox.classList.add(
+            "invalido"
+        );
+
+        camposValidos.comprobante =
+            false;
+
+        statusText.className =
+            "error-general";
+
+        statusText.innerText =
+            "El comprobante no puede superar los 5 MB.";
+
+        return false;
+
+    }
+
+
+    // ----------------------------------------------
+    // TODO CORRECTO
+    // ----------------------------------------------
+
+    grupo.classList.remove(
+        "invalido"
+    );
+
+    grupo.classList.add(
+        "valido"
+    );
+
+    comprobanteBox.classList.remove(
+        "invalido"
+    );
+
+    comprobanteBox.classList.add(
+        "valido"
+    );
+
+    camposValidos.comprobante =
+        true;
+
+    return true;
+
+}
+
+
+// ============================================================
+// PREVISUALIZAR COMPROBANTE
+// ============================================================
+
+comprobante.addEventListener(
+    "change",
+    function() {
+
+        statusText.innerText = "";
+
+        statusText.className = "";
+
+
+        const archivo =
+            comprobante.files[0];
+
+
+        if (!archivo) {
+
+            previewContainer.style.display =
+                "none";
+
+            validarComprobante();
+
+            return;
+
+        }
+
+
+        if (
+            !validarComprobante()
+        ) {
+
+            previewContainer.style.display =
+                "none";
+
+            return;
+
+        }
+
+
+        nombreArchivo.innerText =
+            archivo.name;
+
+
+        const lector =
+            new FileReader();
+
+
+        lector.onload =
+            function(event) {
+
+                previewImagen.src =
+                    event.target.result;
+
+                previewContainer.style.display =
+                    "block";
+
+            };
+
+
+        lector.readAsDataURL(
+            archivo
+        );
+
+    }
+);
+
+
+// ============================================================
 // VALIDACIÓN EN TIEMPO REAL
-// ==========================================
+// ============================================================
 
 form.addEventListener(
     "input",
@@ -953,12 +1395,6 @@ form.addEventListener(
 );
 
 
-form.addEventListener(
-    "change",
-    validarEntrada
-);
-
-
 function validarEntrada(e) {
 
     if (!e.target.name) {
@@ -968,7 +1404,9 @@ function validarEntrada(e) {
     }
 
 
-    switch (e.target.name) {
+    switch (
+        e.target.name
+    ) {
 
 
         case "dni":
@@ -1070,152 +1508,66 @@ function validarEntrada(e) {
 }
 
 
-// ==========================================
-// ESCUCHAR RESPUESTA DE GOOGLE
-// ==========================================
+// ============================================================
+// CONVERTIR ARCHIVO A BASE64
+// ============================================================
 
-window.addEventListener(
-    "message",
-    function(event) {
+function archivoABase64(
+    archivo
+) {
 
-        // Verificar que sea una respuesta válida
+    return new Promise(
+        function(resolve, reject) {
 
-        if (
-            !event.data ||
-            typeof event.data !== "object" ||
-            !event.data.status
-        ) {
-
-            return;
-
-        }
+            const lector =
+                new FileReader();
 
 
-        const resultado = event.data;
+            lector.onload =
+                function() {
+
+                    const resultado =
+                        lector.result;
 
 
-        // ======================================
-        // REGISTRO EXITOSO
-        // ======================================
+                    // Eliminar:
+                    // data:image/jpeg;base64,
 
-        if (
-            resultado.status === "success"
-        ) {
-
-            statusText.className =
-                "success-message";
+                    const base64 =
+                        resultado
+                            .split(",")[1];
 
 
-            statusText.innerHTML =
-                "¡Inscripción realizada correctamente!<br>" +
-                "Número de inscripción: <strong>" +
-                resultado.idInscripcion +
-                "</strong>";
+                    resolve(base64);
+
+                };
 
 
-            // Limpiar formulario
+            lector.onerror =
+                function(error) {
 
-            form.reset();
+                    reject(error);
 
-
-            // Quitar colores
-
-            document
-                .querySelectorAll(".form-group")
-                .forEach(function(grupo) {
-
-                    grupo.classList.remove(
-                        "valido",
-                        "invalido"
-                    );
-
-                });
+                };
 
 
-            // Reiniciar estados
-
-            Object.keys(camposValidos)
-                .forEach(function(campo) {
-
-                    camposValidos[campo] =
-                        false;
-
-                });
-
-
-            btnSubmit.disabled = false;
-
-            btnSubmit.innerText =
-                "Enviar Datos al Archivo";
-
-
-            return;
+            lector.readAsDataURL(
+                archivo
+            );
 
         }
+    );
+
+}
 
 
-        // ======================================
-        // ERROR
-        // ======================================
-
-        if (
-            resultado.status === "error"
-        ) {
-
-            statusText.className =
-                "error-general";
-
-
-            statusText.innerText =
-                resultado.message ||
-                "No se pudo guardar la inscripción.";
-
-
-            // Marcar campo específico
-
-            if (resultado.campo) {
-
-                const grupo =
-                    document.getElementById(
-                        `g-${resultado.campo}`
-                    );
-
-
-                if (grupo) {
-
-                    grupo.classList.remove(
-                        "valido"
-                    );
-
-
-                    grupo.classList.add(
-                        "invalido"
-                    );
-
-                }
-
-            }
-
-
-            btnSubmit.disabled = false;
-
-            btnSubmit.innerText =
-                "Enviar Datos al Archivo";
-
-        }
-
-    }
-
-);
-
-
-// ==========================================
-// ENVÍO DEL FORMULARIO
-// ==========================================
+// ============================================================
+// SUBMIT
+// ============================================================
 
 form.addEventListener(
     "submit",
-    function(e) {
+    async function(e) {
 
         e.preventDefault();
 
@@ -1225,9 +1577,9 @@ form.addEventListener(
         statusText.className = "";
 
 
-        // ======================================
+        // ====================================================
         // VALIDAR TODOS LOS CAMPOS
-        // ======================================
+        // ====================================================
 
         validarCampoRegEx(
             expresiones.dni,
@@ -1288,15 +1640,23 @@ form.addEventListener(
         );
 
 
-        // ======================================
-        // COMPROBAR VALIDACIÓN
-        // ======================================
+        validarComprobante();
+
+
+        // ====================================================
+        // COMPROBAR
+        // ====================================================
 
         const todoValido =
-            Object.values(camposValidos)
-                .every(
-                    valor => valor === true
-                );
+            Object.values(
+                camposValidos
+            ).every(
+                function(valor) {
+
+                    return valor === true;
+
+                }
+            );
 
 
         if (!todoValido) {
@@ -1304,40 +1664,322 @@ form.addEventListener(
             statusText.className =
                 "error-general";
 
-
             statusText.innerText =
                 "Revisa los campos marcados en rojo.";
-
 
             return;
 
         }
 
 
-        // ======================================
-        // BLOQUEAR BOTÓN
-        // ======================================
+        // ====================================================
+        // OBTENER ARCHIVO
+        // ====================================================
 
-        btnSubmit.disabled = true;
+        const archivo =
+            comprobante.files[0];
+
+
+        if (!archivo) {
+
+            statusText.className =
+                "error-general";
+
+            statusText.innerText =
+                "Debes adjuntar el comprobante de pago.";
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // BLOQUEAR BOTÓN
+        // ====================================================
+
+        btnSubmit.disabled =
+            true;
 
         btnSubmit.innerText =
-            "Guardando datos...";
+            "Procesando comprobante...";
 
+
+        statusText.className = "";
 
         statusText.innerText =
-            "Enviando información...";
+            "Preparando el comprobante de pago...";
 
 
-        // ======================================
-        // ENVIAR FORMULARIO
-        // AL IFRAME OCULTO
-        // ======================================
+        try {
 
-        form.submit();
 
+            // ==================================================
+            // CONVERTIR IMAGEN
+            // ==================================================
+
+            const base64 =
+                await archivoABase64(
+                    archivo
+                );
+
+
+            // ==================================================
+            // CREAR DATOS
+            // ==================================================
+
+            const datos =
+                new URLSearchParams();
+
+
+            datos.append(
+                "dni",
+                document
+                    .getElementById("dni")
+                    .value
+                    .trim()
+            );
+
+
+            datos.append(
+                "apellido",
+                document
+                    .getElementById("apellido")
+                    .value
+                    .trim()
+            );
+
+
+            datos.append(
+                "nombre",
+                document
+                    .getElementById("nombre")
+                    .value
+                    .trim()
+            );
+
+
+            datos.append(
+                "email",
+                document
+                    .getElementById("email")
+                    .value
+                    .trim()
+                    .toLowerCase()
+            );
+
+
+            datos.append(
+                "telefono",
+                document
+                    .getElementById("telefono")
+                    .value
+                    .trim()
+            );
+
+
+            datos.append(
+                "direccion",
+                document
+                    .getElementById("direccion")
+                    .value
+                    .trim()
+            );
+
+
+            datos.append(
+                "provincia",
+                document
+                    .getElementById("provincia")
+                    .value
+                    .trim()
+            );
+
+
+            datos.append(
+                "localidad",
+                document
+                    .getElementById("localidad")
+                    .value
+                    .trim()
+            );
+
+
+            datos.append(
+                "esc_egreso",
+                document
+                    .getElementById("esc_egreso")
+                    .value
+                    .trim()
+            );
+
+
+            datos.append(
+                "comprobanteBase64",
+                base64
+            );
+
+
+            datos.append(
+                "comprobanteNombre",
+                archivo.name
+            );
+
+
+            datos.append(
+                "comprobanteTipo",
+                archivo.type
+            );
+
+
+            // ==================================================
+            // MENSAJE
+            // ==================================================
+
+            btnSubmit.innerText =
+                "Enviando información...";
+
+
+            statusText.innerText =
+                "Guardando datos y comprobante...";
+
+
+            // ==================================================
+            // ENVIAR
+            // ==================================================
+
+            await fetch(
+                GOOGLE_SCRIPT_URL,
+                {
+
+                    method: "POST",
+
+                    mode: "no-cors",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/x-www-form-urlencoded;charset=UTF-8"
+
+                    },
+
+                    body:
+                        datos.toString()
+
+                }
+            );
+
+
+            // ==================================================
+            // IMPORTANTE
+            // ==================================================
+            //
+            // no-cors no permite leer la respuesta de Google.
+            // Por eso la confirmación se realiza cuando el
+            // navegador termina la solicitud.
+            //
+            // ==================================================
+
+            statusText.className =
+                "success-message";
+
+
+            statusText.innerHTML =
+
+                "¡Datos enviados correctamente!<br><br>" +
+
+                "El comprobante de pago también fue enviado.<br>" +
+
+                "La inscripción está siendo registrada.";
+
+
+            // ==================================================
+            // LIMPIAR
+            // ==================================================
+
+            form.reset();
+
+
+            previewContainer.style.display =
+                "none";
+
+
+            previewImagen.src =
+                "";
+
+
+            nombreArchivo.innerText =
+                "";
+
+
+            comprobanteBox.classList.remove(
+                "valido",
+                "invalido"
+            );
+
+
+            document
+                .querySelectorAll(
+                    ".form-group"
+                )
+                .forEach(
+                    function(grupo) {
+
+                        grupo.classList.remove(
+                            "valido",
+                            "invalido"
+                        );
+
+                    }
+                );
+
+
+            Object.keys(
+                camposValidos
+            ).forEach(
+                function(campo) {
+
+                    camposValidos[campo] =
+                        false;
+
+                }
+            );
+
+
+            btnSubmit.disabled =
+                false;
+
+
+            btnSubmit.innerText =
+                "Enviar Datos al Archivo";
+
+
+        } catch (error) {
+
+
+            console.error(
+                "Error:",
+                error
+            );
+
+
+            statusText.className =
+                "error-general";
+
+
+            statusText.innerText =
+                "No fue posible enviar la información. Inténtalo nuevamente.";
+
+
+            btnSubmit.disabled =
+                false;
+
+
+            btnSubmit.innerText =
+                "Enviar Datos al Archivo";
+
+        }
 
     }
-
 );
 
 </script>
