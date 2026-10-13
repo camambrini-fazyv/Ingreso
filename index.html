@@ -178,7 +178,7 @@ label {
 }
 
 
-input {
+input, select {
 
     width: 100%;
 
@@ -205,7 +205,7 @@ input {
 }
 
 
-input:focus {
+input:focus, select:focus {
 
     border-color: #0284c7;
 
@@ -218,7 +218,7 @@ input:focus {
 }
 
 
-.form-group.valido input {
+.form-group.valido input, .form-group.valido select {
 
     border-color:
         var(--success);
@@ -226,7 +226,7 @@ input:focus {
 }
 
 
-.form-group.invalido input {
+.form-group.invalido input, .form-group.invalido select {
 
     border-color:
         var(--error);
@@ -989,6 +989,17 @@ button:disabled {
             </div>
 
 
+            <!-- TURNO -->
+            <div class="form-group" id="g-turno">
+                <label for="turno">Turno de cursado *</label>
+                <select id="turno" name="turno" required>
+                    <option value="">Seleccioná un turno</option>
+                    <option value="Mañana">Mañana</option>
+                    <option value="Tarde">Tarde</option>
+                </select>
+                <div class="error-message">Debes seleccionar un turno.</div>
+            </div>
+
             <!-- COMPROBANTE -->
 
             <div
@@ -1238,7 +1249,8 @@ const camposValidos = {
     provincia: false,
     localidad: false,
     esc_egreso: false,
-    comprobante: false
+    comprobante: false,
+    turno: false
 
 };
 
@@ -1691,6 +1703,10 @@ function validarEntrada(e) {
 
             break;
 
+
+        case "turno":
+            validarCampoVacio(e.target, "turno");
+            break;
 
         case "esc_egreso":
 
@@ -2577,6 +2593,8 @@ form.addEventListener(
             );
 
 
+            datos.append("turno", document.getElementById("turno").value);
+
             datos.append(
                 "comprobanteBase64",
                 base64
@@ -2638,9 +2656,26 @@ form.addEventListener(
             // CONFIRMACIÓN
             // =================================================
 
-            mostrarConfirmacion(
-                "Registrada"
-            );
+            // no-cors no permite leer la respuesta POST.
+            // Verificar mediante GET que el DNI/correo aparecen en la planilla.
+            let guardado = false;
+            for (let intento = 0; intento < 5; intento++) {
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                try {
+                    const comprobacion = await verificarDuplicados(dni, email);
+                    if (comprobacion.dniExiste && comprobacion.emailExiste) {
+                        guardado = true;
+                        break;
+                    }
+                } catch (_) { /* reintentar verificación */ }
+            }
+            if (guardado) {
+                mostrarConfirmacion("Registrada");
+            } else {
+                statusText.className = "error-general";
+                statusText.innerText = "No se pudo confirmar el registro. Consultá con la administración antes de volver a enviar para evitar duplicados.";
+                btnSubmit.innerText = "Verificación pendiente";
+            }
 
 
         } catch (error) {
