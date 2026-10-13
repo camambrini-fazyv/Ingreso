@@ -1978,6 +1978,41 @@ function verificarDuplicados(dni, email) {
 }
 
 
+// Consulta el estado de una solicitud concreta mediante JSONP.
+function consultarEstado(solicitudId) {
+    return new Promise((resolve, reject) => {
+        const callbackName = 'respuestaEstado_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
+        const script = document.createElement('script');
+        let terminado = false;
+        const timeout = setTimeout(() => finalizar(new Error('Tiempo de espera agotado.')), 10000);
+        function finalizar(error, datos) {
+            if (terminado) return;
+            terminado = true;
+            clearTimeout(timeout);
+            delete window[callbackName];
+            script.remove();
+            if (error) reject(error); else resolve(datos);
+        }
+        window[callbackName] = datos => finalizar(null, datos);
+        script.onerror = () => finalizar(new Error('No se pudo consultar el estado.'));
+        const parametros = new URLSearchParams({
+            accion: 'estado', solicitudId, callback: callbackName, _: String(Date.now())
+        });
+        script.src = GOOGLE_SCRIPT_URL + '?' + parametros.toString();
+        document.body.appendChild(script);
+    });
+}
+
+function crearSolicitudId() {
+    if (crypto.randomUUID) return crypto.randomUUID();
+    const bytes = new Uint8Array(16);
+    crypto.getRandomValues(bytes);
+    bytes[6] = (bytes[6] & 15) | 64;
+    bytes[8] = (bytes[8] & 63) | 128;
+    const s = Array.from(bytes, b => b.toString(16).padStart(2, '0')).join('');
+    return s.slice(0,8)+'-'+s.slice(8,12)+'-'+s.slice(12,16)+'-'+s.slice(16,20)+'-'+s.slice(20);
+}
+
 // ============================================================
 // CONVERTIR ARCHIVO A BASE64
 // ============================================================
@@ -2613,6 +2648,9 @@ form.addEventListener(
             );
 
 
+            const solicitudId = crearSolicitudId();
+            datos.append('solicitudId', solicitudId);
+
             // =================================================
             // ENVIAR
             // =================================================
@@ -2656,25 +2694,22 @@ form.addEventListener(
             // CONFIRMACIÓN
             // =================================================
 
-            // no-cors no permite leer la respuesta POST.
-            // Verificar mediante GET que el DNI/correo aparecen en la planilla.
-            let guardado = false;
-            for (let intento = 0; intento < 5; intento++) {
-                await new Promise(resolve => setTimeout(resolve, 1500));
+            // Consultar exclusivamente el estado de esta solicitud.
+            // Nunca confirmar basándose únicamente en DNI o correo existentes.
+            let estado = null;
+            for (let intento = 0; intento < 8; intento++) {
+                await new Promise(resolve => setTimeout(resolve, 1800));
                 try {
-                    const comprobacion = await verificarDuplicados(dni, email);
-                    if (comprobacion.dniExiste && comprobacion.emailExiste) {
-                        guardado = true;
-                        break;
-                    }
-                } catch (_) { /* reintentar verificación */ }
+                    estado = await consultarEstado(solicitudId);
+                    if (estado && estado.status === 'success') break;
+                } catch (_) { /* Una consulta puede fallar transitoriamente. */ }
             }
-            if (guardado) {
-                mostrarConfirmacion("Registrada");
+            if (estado && estado.status === 'success' && estado.idInscripcion != null) {
+                mostrarConfirmacion(estado.idInscripcion);
             } else {
                 statusText.className = "error-general";
-                statusText.innerText = "No se pudo confirmar el registro. Consultá con la administración antes de volver a enviar para evitar duplicados.";
-                btnSubmit.innerText = "Verificación pendiente";
+                statusText.innerText = "No se pudo confirmar esta inscripción. No vuelvas a enviarla: consultá con administración para evitar duplicaciones.";
+                btnSubmit.innerText = "Confirmación pendiente";
             }
 
 
@@ -2692,7 +2727,7 @@ form.addEventListener(
 
 
             statusText.innerText =
-                "No fue posible verificar o enviar la información. Inténtalo nuevamente.";
+                "No fue posible completar o confirmar la operación. Antes de volver a enviar, consultá con administración para evitar duplicaciones.";
 
 
             btnSubmit.disabled =
